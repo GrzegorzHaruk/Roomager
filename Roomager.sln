@@ -3,7 +3,51 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Web", "Roomager.Web\Roomager.Web.csproj", "{3B19CC2B-54C2-407F-9DEC-A968596F98E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Data", "Roomager.Data\Roomager.Data.csproj", "{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.DataAccess", "Roomager.DataAccess\Roomager.DataAccess.csproj", "{2835BE90-4876-4B8B-8A21-FD6BB3005D19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Services", "Roomager.Services\Roomager.Services.csproj", "{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Roomager.Db", "Roomager.Db\Roomager.Db.sqlproj", "{F6740D14-F0F7-4758-A428-4265B190AB74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Tests", "Roomager.Tests\Roomager.Tests.csproj", "{A69B9941-979F-4EE1-947C-779D48AEBEEA}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B19CC2B-54C2-407F-9DEC-A968596F98E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B19CC2B-54C2-407F-9DEC-A968596F98E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B19CC2B-54C2-407F-9DEC-A968596F98E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B19CC2B-54C2-407F-9DEC-A968596F98E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2835BE90-4876-4B8B-8A21-FD6BB3005D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2835BE90-4876-4B8B-8A21-FD6BB3005D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2835BE90-4876-4B8B-8A21-FD6BB3005D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2835BE90-4876-4B8B-8A21-FD6BB3005D19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6740D14-F0F7-4758-A428-4265B190AB74}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A69B9941-979F-4EE1-947C-779D48AEBEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69B9941-979F-4EE1-947C-779D48AEBEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69B9941-979F-4EE1-947C-779D48AEBEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69B9941-979F-4EE1-947C-779D48AEBEEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
