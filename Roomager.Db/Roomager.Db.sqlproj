@@ -57,4 +57,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="PaymentRecordTable.sql" />
+    <Build Include="EnergyPaymentConfigTable.sql" />
+    <Build Include="WaterPaymentConfigTable.sql" />
+    <Build Include="GasPaymentConfigTable.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Roomager.Db.refactorlog" />
+  </ItemGroup>
 </Project>
