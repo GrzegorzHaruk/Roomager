@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewData["Title"] = "CreateRecord";
+}
+
+
+
+<div class="container">
+    <form>
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><b>Create Record</b></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group form-inline">
+                            <label>Add Date:</label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label>Energy Reading:</label>
+                            <input type="text" class="form-control" placeholder="Enter energy reading">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Energy Usage:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Energy Cost:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label>Cold Water Reading:</label>
+                            <input type="text" class="form-control" placeholder="Enter water reading">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Cold Water Cost:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Hot Water Reading:</label>
+                            <input type="text" class="form-control" placeholder="Enter water reading">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Hot Water Cost:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label>Gas Cost:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group ">
+                            <label>Number of Tenants:</label>
+                            <select class="select-shape">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label>Total Cost:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Cost per Person:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group ">
+                            <label>Comment:</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group ">
+                            <a class="btn btn-default">Calculate</a>                            
+                            <button type="reset" class="btn btn-default">Clear</button>
+                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-default">Save</a>
+                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Energy Info
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <a class="btn btn-default">Save</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Energy Info
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-inline">
+                                <label>Input:</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group form-inline">
+                                <a class="btn btn-default">Save</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Gas Info
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-inline">
+                                <label>Input:</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group form-inline">
+                                <a class="btn btn-default">Save</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

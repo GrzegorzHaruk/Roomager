@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Web", "Roomager.Web\Roomager.Web.csproj", "{3B19CC2B-54C2-407F-9DEC-A968596F98E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roomager.Web", "Roomager.Web\Roomager.Web.csproj", "{3B19CC2B-54C2-407F-9DEC-A968596F98E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Data", "Roomager.Data\Roomager.Data.csproj", "{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roomager.Data", "Roomager.Data\Roomager.Data.csproj", "{556605D3-E7BF-4CAC-8CF4-083AEF9C9309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.DataAccess", "Roomager.DataAccess\Roomager.DataAccess.csproj", "{2835BE90-4876-4B8B-8A21-FD6BB3005D19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roomager.DataAccess", "Roomager.DataAccess\Roomager.DataAccess.csproj", "{2835BE90-4876-4B8B-8A21-FD6BB3005D19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Services", "Roomager.Services\Roomager.Services.csproj", "{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roomager.Services", "Roomager.Services\Roomager.Services.csproj", "{753C77FA-B9B5-49A1-8A0B-CE1769EF034C}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Roomager.Db", "Roomager.Db\Roomager.Db.sqlproj", "{F6740D14-F0F7-4758-A428-4265B190AB74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roomager.Tests", "Roomager.Tests\Roomager.Tests.csproj", "{A69B9941-979F-4EE1-947C-779D48AEBEEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roomager.Tests", "Roomager.Tests\Roomager.Tests.csproj", "{A69B9941-979F-4EE1-947C-779D48AEBEEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

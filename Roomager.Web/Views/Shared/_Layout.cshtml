@@ -2,10 +2,50 @@
 
 <html>
 <head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/customCss/general.css"/>
+    <link rel="stylesheet" href="~/lib/customCss/customSelect.css"/>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title</title>    
 </head>
+
 <body>
+    <header>
+        <div class="jumbotron text-center jumbotron-padding">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="container-fluid">
+                            <img src="~/pictures/sketch_01_sm_gr.jpg" alt="" class="header-img">                            
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container-fluid">
+                            <h1 class="header-text">
+                                <b>ROOMAGER</b>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <a asp-action="Index" asp-controller="Home" class="navbar-brand">Roomager</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a asp-action="ManagerHomePage" asp-controller="ManagerHome">Manager</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div>
         @RenderBody()
     </div>

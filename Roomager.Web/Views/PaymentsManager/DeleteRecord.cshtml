@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewData["Title"] = "DeleteRecord";
+}
+
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><b>Delete this Record?</b></h4>
+
+                        <div class="form-group" style="padding-top: 10px;">
+                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger" style="width: 40%">Yes</a>
+                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-primary" style="width: 40%">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><b>Payment Record</b></h4>                        
+                    </div>
+                    
+                    <div class="panel-body">
+                        <div class="form-group form-inline">
+                            <label>Add Date:</label>
+
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label>Energy Reading:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Energy Usage:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Energy Cost:</label>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label>Cold Water Reading:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Cold Water Cost:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Hot Water Reading:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Hot Water Cost:</label>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label>Gas Cost:</label>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group ">
+                            <label>Number of Tenants:</label>
+
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label>Total Cost:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Cost per Person:</label>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group ">
+                            <label>Comment:</label>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Energy Details
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+
+                        </div>
+                        <div class="form-group form-inline">
+                            <label>Input:</label>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-group">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Water Details
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-inline">
+                                <label>Cold Water Fee:</label>
+
+                            </div>
+                            <div class="form-group form-inline">
+                                <label>Coh Water Fee:</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Gas Details
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-inline">
+                                <label>Input:</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
