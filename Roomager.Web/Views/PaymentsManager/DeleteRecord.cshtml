@@ -1,4 +1,5 @@
-﻿
+﻿@model Roomager.Web.Models.PaymentsModels.PaymentsRecord
+
 @{
     ViewData["Title"] = "DeleteRecord";
 }
@@ -9,12 +10,14 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+
                         <h4><b>Delete this Record?</b></h4>
 
                         <div class="form-group" style="padding-top: 10px;">
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger" style="width: 40%">Yes</a>
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-primary" style="width: 40%">Cancel</a>
                         </div>
+
                     </div>
                 </div>
             </div>            
@@ -30,70 +33,76 @@
                     
                     <div class="panel-body">
                         <div class="form-group form-inline">
-                            <label>Add Date:</label>
-
+                            <label asp-for="AddDate"></label>
+                            <input asp-for="AddDate" readonly="readonly" type="date" class="form-control">
                         </div>
 
                         <div class="form-group form-inline">
-                            <label>Energy Reading:</label>
-
-                        </div>
-                        <div class="form-group form-inline">
-                            <label>Energy Usage:</label>
-
-                        </div>
-                        <div class="form-group form-inline">
-                            <label>Energy Cost:</label>
-
+                            <label asp-for="EnergyReading"></label>
+                            <input asp-for="EnergyReading" readonly="readonly" type="number" class="form-control" placeholder="Enter energy reading">
                         </div>
 
-                        <hr>
-
                         <div class="form-group form-inline">
-                            <label>Cold Water Reading:</label>
-
+                            <label asp-for="EnergyUsage"></label>
+                            <input asp-for="EnergyUsage" readonly="readonly" type="number" class="form-control">
                         </div>
-                        <div class="form-group form-inline">
-                            <label>Cold Water Cost:</label>
 
-                        </div>
                         <div class="form-group form-inline">
-                            <label>Hot Water Reading:</label>
-
-                        </div>
-                        <div class="form-group form-inline">
-                            <label>Hot Water Cost:</label>
-
+                            <label asp-for="EnergyCost"></label>
+                            <input asp-for="EnergyCost" readonly="readonly" type="number" class="form-control">
                         </div>
 
                         <hr>
 
                         <div class="form-group form-inline">
-                            <label>Gas Cost:</label>
+                            <label asp-for="ColdWaterReading"></label>
+                            <input asp-for="ColdWaterReading" readonly="readonly" type="number" class="form-control" placeholder="Enter water reading">
+                        </div>
 
+                        <div class="form-group form-inline">
+                            <label asp-for="ColdWaterCost"></label>
+                            <input asp-for="ColdWaterCost" readonly="readonly" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="HotWaterReading"></label>
+                            <input asp-for="HotWaterReading" readonly="readonly" type="number" class="form-control" placeholder="Enter water reading">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="HotWaterCost"></label>
+                            <input asp-for="HotWaterCost" readonly="readonly" type="number" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="GasCost"></label>
+                            <input asp-for="GasCost" readonly="readonly" type="number" class="form-control">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="NumberOfTenants"></label>
+                            <input asp-for="NumberOfTenants" readonly="readonly" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="TotalCost"></label>
+                            <input asp-for="TotalCost" readonly="readonly" type="number" class="form-control">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="CostPerPerson"></label>
+                            <input asp-for="CostPerPerson" readonly="readonly" type="number" class="form-control">
                         </div>
 
                         <hr>
 
                         <div class="form-group ">
-                            <label>Number of Tenants:</label>
-
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label>Total Cost:</label>
-
-                        </div>
-                        <div class="form-group form-inline">
-                            <label>Cost per Person:</label>
-
-                        </div>
-
-                        <hr>
-
-                        <div class="form-group ">
-                            <label>Comment:</label>
-
+                            <label asp-for="Comment"></label>
+                            <textarea asp-for="Comment" readonly="readonly" class="form-control"></textarea>
                         </div>
 
                     </div>
@@ -105,19 +114,23 @@
                     <div class="panel-heading">
                         Energy Details
                     </div>
+
                     <div class="panel-body">
                         <div class="form-group form-inline">
                             <label>Input:</label>
 
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Input:</label>
 
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Input:</label>
 
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Input:</label>
 
@@ -139,8 +152,9 @@
                                 <label>Cold Water Fee:</label>
 
                             </div>
+
                             <div class="form-group form-inline">
-                                <label>Coh Water Fee:</label>
+                                <label>Hot Water Fee:</label>
 
                             </div>
                         </div>

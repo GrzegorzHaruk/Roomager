@@ -2,7 +2,7 @@
 
 namespace Roomager.Web.Models.PaymentsModels
 {
-    public class EnergyPaymentConfig
+    public class EnergyPaymentsConfig
     {
         public int ConfigId { get; set; }
         public DateTime AddDate { get; set; }

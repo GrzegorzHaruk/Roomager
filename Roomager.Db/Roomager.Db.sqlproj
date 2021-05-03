@@ -56,14 +56,19 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="PublishProfile\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="PaymentRecordTable.sql" />
-    <Build Include="EnergyPaymentConfigTable.sql" />
-    <Build Include="WaterPaymentConfigTable.sql" />
-    <Build Include="GasPaymentConfigTable.sql" />
+    <Build Include="Tables\WaterPaymentConfigTable.sql" />
+    <Build Include="Tables\EnergyPaymentConfigTable.sql" />
+    <Build Include="Tables\GasPaymentConfigTable.sql" />
+    <Build Include="Tables\PaymentRecordTable.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="Roomager.Db.refactorlog" />
+    <RefactorLog Include="Tables\Roomager.Db.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PublishProfile\Roomager.Db.publish.xml" />
   </ItemGroup>
 </Project>

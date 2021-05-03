@@ -1,10 +1,11 @@
-﻿
+﻿@model Roomager.Web.Models.PaymentsModels.PaymentsRecord
+
 @{
     ViewData["Title"] = "EditRecord";
 }
 
 <div class="container">
-    <form>
+    <form asp-action="EditRecord" method="post">
         <div class="row">
 
             <div class="col-sm-4">
@@ -13,55 +14,74 @@
                         <h4><b>Create Record</b></h4>                        
                     </div>
                     <div class="panel-body">
+
+                        <div class="form-group form-inline" hidden="hidden">
+                            <input asp-for="RecordId" type="number" class="form-control">
+                        </div>
+
                         <div class="form-group form-inline">
                             <label>Add Date:</label>
-                            <input type="date" class="form-control">
+                            <input asp-for="AddDate" type="date" class="form-control">
+                            <span asp-validation-for="AddDate" class="text-danger"></span>
                         </div>
 
                         <div class="form-group form-inline">
                             <label>Energy Reading:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="EnergyReading" type="number" class="form-control">
+                            <span asp-validation-for="EnergyReading" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Energy Usage:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="EnergyUsage" type="number" class="form-control">
+                            <span asp-validation-for="EnergyReading" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Energy Cost:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="EnergyCost" type="number" class="form-control">
+                            <span asp-validation-for="EnergyCost" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group form-inline">
                             <label>Cold Water Reading:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="ColdWaterReading" type="number" class="form-control">
+                            <span asp-validation-for="ColdWaterReading" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Cold Water Cost:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="ColdWaterCost" type="number" class="form-control">
+                            <span asp-validation-for="ColdWaterCost" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Hot Water Reading:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="HotWaterReading" type="number" class="form-control">
+                            <span asp-validation-for="HotWaterReading" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Hot Water Cost:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="HotWaterCost" type="number" class="form-control">
+                            <span asp-validation-for="HotWaterCost" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group form-inline">
                             <label>Gas Cost:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="GasCost" type="number" class="form-control">
+                            <span asp-validation-for="GasCost" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group ">
                             <label>Number of Tenants:</label>
-                            <select class="select-shape">
+                            <select asp-for="NumberOfTenants" class="select-shape">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -72,18 +92,21 @@
 
                         <div class="form-group form-inline">
                             <label>Total Cost:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="TotalCost" type="number" class="form-control">
+                            <span asp-validation-for="TotalCost" class="text-danger"></span>
                         </div>
+
                         <div class="form-group form-inline">
                             <label>Cost per Person:</label>
-                            <input type="text" class="form-control">
+                            <input asp-for="CostPerPerson" type="number" class="form-control">
+                            <span asp-validation-for="CostPerPerson" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group ">
                             <label>Comment:</label>
-                            <textarea class="form-control"></textarea>
+                            <textarea asp-for="Comment" class="form-control"></textarea>
                         </div>
 
                         <hr>
@@ -91,7 +114,7 @@
                         <div class="form-group ">
                             <a class="btn btn-default">Recalculate</a>
                             <a class="btn btn-default">Clear</a>
-                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-default">Save</a>
+                            <input type="submit" value="Save" class="btn btn-default">
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger">Cancel</a>
                         </div>
 

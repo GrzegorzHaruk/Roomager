@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Roomager.Web.Models.PaymentsModels;
 
 namespace Roomager.Web.Controllers
 {
@@ -10,7 +11,9 @@ namespace Roomager.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            List<PaymentsRecord> records = new List<PaymentsRecord>();
+            records.Add(new PaymentsRecord());
+            return View(records);
         }
 
         public ViewResult CreateRecord()

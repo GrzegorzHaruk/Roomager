@@ -1,13 +1,13 @@
-﻿CREATE TABLE [dbo].[PaymentRecordTable]
+﻿CREATE TABLE [dbo].[PaymentsRecordTable]
 (	
     [RecordId] INT NOT NULL PRIMARY KEY, 
 	[EnergyReading] FLOAT NOT NULL,
 	[EnergyUsage] FLOAT NOT NULL,
 	[EnergyCost] DECIMAL(18, 2) NOT NULL,
 	[ColdWaterReading] FLOAT NOT NULL,
-	[HotdWaterReading] FLOAT NOT NULL,
+	[HotWaterReading] FLOAT NOT NULL,
 	[ColdWaterCost] DECIMAL(18,2) NOT NULL,
-	[HotdWaterCost] DECIMAL(18,2) NOT NULL,
+	[HotWaterCost] DECIMAL(18,2) NOT NULL,
 	[GasCost] DECIMAL(18, 2) NOT NULL,
 	[NumberOfTenants] INT NOT NULL,
 	[TotalCost] DECIMAL(18, 2) NOT NULL,
