@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Roomager.DataAccess;
+using Roomager.DataAccess.DataAccessObjects;
+using Roomager.Services.PaymentsServices;
 
 namespace Roomager.Web
 {
@@ -19,6 +22,10 @@ namespace Roomager.Web
             services.AddMvc(options=>options.EnableEndpointRouting=false);
             services.AddMemoryCache();
             services.AddSession();
+
+            services.AddTransient<IDataAccess, DapperDataAccess>();
+            services.AddTransient<IPaymentsRecordDAO, PaymentsRecordDAO>();
+            services.AddTransient<IPaymentsRecordService, PaymentsRecordService>();
 
             services.AddAutoMapper(typeof(Startup));
         }
