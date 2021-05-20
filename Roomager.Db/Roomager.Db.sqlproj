@@ -63,7 +63,7 @@
     <Build Include="Tables\WaterPaymentConfigTable.sql" />
     <Build Include="Tables\EnergyPaymentConfigTable.sql" />
     <Build Include="Tables\GasPaymentConfigTable.sql" />
-    <Build Include="Tables\PaymentRecordTable.sql" />
+    <Build Include="Tables\PaymentsRecordTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Tables\Roomager.Db.refactorlog" />

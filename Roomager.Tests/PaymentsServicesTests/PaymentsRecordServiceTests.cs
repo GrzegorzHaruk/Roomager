@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.Generic;
+using Xunit;
+using Roomager.Services.PaymentsServices;
+using Autofac.Extras.Moq;
+using Roomager.DataAccess.DataAccessObjects;
+using Roomager.Data;
+using System.Linq;
+
+namespace Roomager.Tests.PaymentsServicesTests
+{
+    public class PaymentsRecordServiceTests
+    {
+        [Fact]
+        public void GetRecords_GetAllRecords_Success()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecords())
+                    .Returns(GetSampleRecords());
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var expected = GetSampleRecords().ToList();
+
+                var actual = service.GetRecords().ToList();
+
+                Assert.True(actual != null);
+
+                Assert.Equal(expected.Count, actual.Count);
+
+                for (int i = 0; i < expected.Count; i++)
+                {
+                    Assert.Equal(expected[i].RecordId, actual[i].RecordId);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetRecords_GetAllRecords_GetEmptyList()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecords())
+                    .Returns(new List<PaymentsRecordDTO>());
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var expected = new List<PaymentsRecordDTO>();
+                var actual = service.GetRecords().ToList();
+
+                Assert.Equal(expected.Count, actual.Count);
+                Assert.True(actual.Count == 0);
+            }        
+        }
+
+        [Theory]
+        [InlineData(1,2)]
+        [InlineData(2,2)]
+        [InlineData(3,2)]
+        [InlineData(1,5)]
+        [InlineData(2,5)]
+        [InlineData(2,6)]
+        public void GetRecords_GetRecordsPaged_Success(int pageNr, int pageSize)
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecords(pageSize, pageNr))
+                    .Returns(GetSampleRecords(pageSize, pageNr));
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var expected = GetSampleRecords(pageSize, pageNr).ToList();
+
+                var actual = service.GetRecords(pageSize, pageNr).ToList();
+
+                Assert.Equal(expected.Count, actual.Count);
+
+                for (int i = 0; i < expected.Count; i++)
+                {
+                    Assert.Equal(expected[i].RecordId, actual[i].RecordId);
+                }
+            }
+        }
+
+        private IEnumerable<PaymentsRecordDTO> sampleRecords = new List<PaymentsRecordDTO>
+            {
+                new PaymentsRecordDTO
+                {
+                    RecordId = 1, EnergyReading = 0, EnergyUsage = 0, EnergyCost = 0, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                },
+                new PaymentsRecordDTO
+                {
+                    RecordId = 2, EnergyReading = 15, EnergyUsage = 15, EnergyCost = 30, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                },
+                new PaymentsRecordDTO
+                {
+                    RecordId = 3, EnergyReading = 32, EnergyUsage = 12, EnergyCost = 32, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                },
+                new PaymentsRecordDTO
+                {
+                    RecordId = 4, EnergyReading = 49, EnergyUsage = 13, EnergyCost = 35, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                },
+                new PaymentsRecordDTO
+                {
+                    RecordId = 5, EnergyReading = 65, EnergyUsage = 17, EnergyCost = 37, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                },
+            };
+
+        private IEnumerable<PaymentsRecordDTO> GetSampleRecords()
+        {
+            return sampleRecords;
+        }
+
+        private IEnumerable<PaymentsRecordDTO> GetSampleRecords(int pageSize, int pageNr)
+        {
+            return sampleRecords.Skip((pageNr - 1) * pageSize).Take(pageSize);
+        }
+    }
+}

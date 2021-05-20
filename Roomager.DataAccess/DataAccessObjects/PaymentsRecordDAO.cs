@@ -16,12 +16,19 @@ namespace Roomager.DataAccess.DataAccessObjects
 
         public IEnumerable<PaymentsRecordDTO> GetRecords()
         {
-            throw new NotImplementedException();
+            string sql = "SELECT * FROM PaymentsRecordTable";
+
+            return dataAccess.GetData<PaymentsRecordDTO>(sql);
         }
 
         public IEnumerable<PaymentsRecordDTO> GetRecords(int pageSize, int pageNr)
         {
-            throw new NotImplementedException();
+            string sql = @"SELECT * FROM PaymentsRecordTable AS PRT
+                            ORDER BY PRT.AddDate ASC
+                                OFFSET @pageSize * (@pageNr - 1) ROWS
+                                    FETCH NEXT @pageSize ROWS ONLY";
+
+            return dataAccess.GetData<PaymentsRecordDTO>(sql, pageSize, pageNr);
         }
     }
 }

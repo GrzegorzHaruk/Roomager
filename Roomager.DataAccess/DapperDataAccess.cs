@@ -29,7 +29,7 @@ namespace Roomager.DataAccess
         {
             using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
             {
-                return connection.Query<T>(sql, new { pageSize, pageNr });
+                return connection.Query<T>(sql, new { pageSize = pageSize, pageNr = pageNr });
             }
         }
 
