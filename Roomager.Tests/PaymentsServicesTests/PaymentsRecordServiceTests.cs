@@ -6,6 +6,7 @@ using Autofac.Extras.Moq;
 using Roomager.DataAccess.DataAccessObjects;
 using Roomager.Data;
 using System.Linq;
+using Moq;
 
 namespace Roomager.Tests.PaymentsServicesTests
 {
@@ -83,6 +84,40 @@ namespace Roomager.Tests.PaymentsServicesTests
                 {
                     Assert.Equal(expected[i].RecordId, actual[i].RecordId);
                 }
+            }
+        }
+
+        [Fact]
+        public void GetRecord_Success()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecord(1))
+                    .Returns(sampleRecords.Where(x => x.RecordId == 1).SingleOrDefault());
+
+                var service = mock.Create<PaymentsRecordService>();
+                var expected = sampleRecords.Where(x => x.RecordId == 1).SingleOrDefault();
+                var actual = service.GetRecord(1);
+
+                Assert.True(actual.RecordId == expected.RecordId);
+            }
+        }
+
+        [Fact]
+        public void GetRecord_NoResult_GetNewObject()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecord(15))
+                    .Returns(new PaymentsRecordDTO());
+
+                var service = mock.Create<PaymentsRecordService>();
+                var expected = new PaymentsRecordDTO();
+                var actual = service.GetRecord(15);
+
+                Assert.True(actual.RecordId == expected.RecordId);                
             }
         }
 

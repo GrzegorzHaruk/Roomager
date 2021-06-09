@@ -39,5 +39,15 @@ namespace Roomager.Services.PaymentsServices
 
             return records;
         }
+
+        public PaymentsRecordDTO GetRecord(int id)
+        {
+            PaymentsRecordDTO record = paymentsRecordDAO.GetRecord(id);
+            if (record == null)
+            {
+                record = new PaymentsRecordDTO();
+            }
+            return record;
+        }
     }
 }

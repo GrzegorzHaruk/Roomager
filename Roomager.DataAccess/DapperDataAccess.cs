@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using Dapper;
 using Microsoft.Extensions.Configuration;
@@ -35,7 +36,10 @@ namespace Roomager.DataAccess
 
         public T GetSingleData<T>(string sql, int id)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Query<T>(sql, new { id = id }).SingleOrDefault();
+            }
         }
 
         public int CreateData<T>(string sql, T newData)

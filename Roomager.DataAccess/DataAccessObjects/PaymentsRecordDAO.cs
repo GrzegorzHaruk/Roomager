@@ -30,5 +30,13 @@ namespace Roomager.DataAccess.DataAccessObjects
 
             return dataAccess.GetData<PaymentsRecordDTO>(sql, pageSize, pageNr);
         }
+
+        public PaymentsRecordDTO GetRecord(int id)
+        {
+            string sql = @"SELECT * FROM PaymentsRecordTable 
+                            WHERE RecordId = @id";
+
+            return dataAccess.GetSingleData<PaymentsRecordDTO>(sql, id);
+        }
     }
 }
