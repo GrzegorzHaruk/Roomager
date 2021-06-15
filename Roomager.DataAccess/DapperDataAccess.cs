@@ -44,7 +44,10 @@ namespace Roomager.DataAccess
 
         public int CreateData<T>(string sql, T newData)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Execute(sql, newData);
+            }
         }        
 
         public int EditData<T>(string sql, T editedData)

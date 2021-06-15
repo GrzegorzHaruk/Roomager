@@ -121,6 +121,61 @@ namespace Roomager.Tests.PaymentsServicesTests
             }
         }
 
+        [Fact]
+        public void CreateRecord_RecordCreated_Returns1()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                var newRecord = GetSampleRecord();
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.CreateRecord(newRecord))
+                    .Returns(1);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.CreateRecord(newRecord);
+
+                Assert.True(result == 1);                
+            }
+        }
+
+        [Fact]
+        public void CreateRecord_InputNullObject_Returns0()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.CreateRecord(null))
+                    .Returns(0);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.CreateRecord(null);
+
+                Assert.True(result == 0);
+            }
+        }
+
+        [Fact]
+        public void CreateRecord_InputInvalidObject_Returns0()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                var newRecord = GetInvalidSampleRecord();
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.CreateRecord(newRecord))
+                    .Returns(0);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.CreateRecord(newRecord);
+
+                Assert.True(result == 0);
+            }
+        }
+
         private IEnumerable<PaymentsRecordDTO> sampleRecords = new List<PaymentsRecordDTO>
             {
                 new PaymentsRecordDTO
@@ -153,6 +208,39 @@ namespace Roomager.Tests.PaymentsServicesTests
         private IEnumerable<PaymentsRecordDTO> GetSampleRecords(int pageSize, int pageNr)
         {
             return sampleRecords.Skip((pageNr - 1) * pageSize).Take(pageSize);
+        }
+
+        private PaymentsRecordDTO GetSampleRecord()
+        {
+            PaymentsRecordDTO record = new PaymentsRecordDTO
+            {
+                RecordId = 100,
+                EnergyReading = 555,
+                EnergyUsage = 666,
+                EnergyCost = 888,
+                HotWaterReading = 111,
+                ColdWaterReading = 111,
+                ColdWaterCost = 100,
+                HotWaterCost = 100,
+                GasCost = 100,
+                NumberOfTenants = 5,
+                TotalCost = 500,
+                CostPerPerson = 100,
+                AddDate = DateTime.Now,
+                Comment = ""
+            };
+
+            return record;
+        }
+
+        private PaymentsRecordDTO GetInvalidSampleRecord()
+        {
+            PaymentsRecordDTO record = new PaymentsRecordDTO
+            {
+                RecordId = 100,
+            };
+
+            return record;
         }
     }
 }

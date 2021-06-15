@@ -38,5 +38,14 @@ namespace Roomager.DataAccess.DataAccessObjects
 
             return dataAccess.GetSingleData<PaymentsRecordDTO>(sql, id);
         }
+
+        public int CreateRecord(PaymentsRecordDTO newRecord)
+        {
+            string sql = @"INSERT INTO PaymentsRecordTable
+                            (RecordId, EnergyReading, EnergyUsage, EnergyCost, ColdWaterReading, HotWaterReading, ColdWaterCost, HotWaterCost, GasCost, NumberOfTenants, TotalCost, CostPerPerson, AddDate, Comment)
+                                VALUES (@RecordId, @EnergyReading, @EnergyUsage, @EnergyCost, @ColdWaterReading, @HotWaterReading, @ColdWaterCost, @HotWaterCost, @GasCost, @NumberOfTenants, @TotalCost, @CostPerPerson, @AddDate, @Comment)";
+
+            return dataAccess.CreateData<PaymentsRecordDTO>(sql, newRecord);
+        }
     }
 }

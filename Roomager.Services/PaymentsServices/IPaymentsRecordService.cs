@@ -10,5 +10,6 @@ namespace Roomager.Services.PaymentsServices
         IEnumerable<PaymentsRecordDTO> GetRecords();
         IEnumerable<PaymentsRecordDTO> GetRecords(int pageSize, int pageNr);
         PaymentsRecordDTO GetRecord(int id);
+        int CreateRecord(PaymentsRecordDTO newRecord);
     }
 }

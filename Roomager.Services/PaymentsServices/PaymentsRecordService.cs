@@ -49,5 +49,15 @@ namespace Roomager.Services.PaymentsServices
             }
             return record;
         }
+
+        public int CreateRecord(PaymentsRecordDTO newRecord)
+        {
+            int rowsAffected = 0;
+            if (newRecord != null)
+            {
+                rowsAffected = paymentsRecordDAO.CreateRecord(newRecord);
+            }
+            return rowsAffected;
+        }
     }
 }
