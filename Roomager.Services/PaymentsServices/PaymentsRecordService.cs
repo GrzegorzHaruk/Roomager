@@ -59,5 +59,26 @@ namespace Roomager.Services.PaymentsServices
             }
             return rowsAffected;
         }
+
+        public int EditRecord(int id, PaymentsRecordDTO editedRecord)
+        {
+            int rowsAffected = 0;
+            if (editedRecord != null)
+            {
+                rowsAffected = paymentsRecordDAO.EditRecord(id, editedRecord);
+            }
+            return rowsAffected;
+        }
+
+        public int DeleteRecord(int id)
+        {
+            int rowsAffected = 0;
+            if (id >= 0)
+            {
+                rowsAffected = paymentsRecordDAO.DeleteRecord(id);
+            }                
+
+            return rowsAffected;
+        }
     }
 }

@@ -176,6 +176,70 @@ namespace Roomager.Tests.PaymentsServicesTests
             }
         }
 
+        [Fact]
+        public void EditRecord_ValidInput_Success()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                var record = GetSampleRecords().FirstOrDefault();
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.EditRecord(record.RecordId, record))
+                    .Returns(1);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.EditRecord(record.RecordId, record);
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Verify(x => x.EditRecord(record.RecordId, record), Times.Once());
+                    
+                Assert.True(result == 1);
+            }
+        }
+
+        [Fact]
+        public void EditRecord_InvalidInput_Returs0()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                var record = GetInvalidSampleRecord();
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.EditRecord(record.RecordId, record))
+                    .Returns(0);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.EditRecord(record.RecordId, record);
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Verify(x => x.EditRecord(record.RecordId, record), Times.Once());
+
+                Assert.True(result == 0);
+            }
+        }
+
+        [Fact]
+        public void DeleteRecord_Success()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.DeleteRecord(1))
+                    .Returns(1);
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var result = service.DeleteRecord(1);
+
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Verify(x => x.DeleteRecord(1), Times.Once());
+
+                Assert.True(result == 1);
+            }
+        }
+
         private IEnumerable<PaymentsRecordDTO> sampleRecords = new List<PaymentsRecordDTO>
             {
                 new PaymentsRecordDTO

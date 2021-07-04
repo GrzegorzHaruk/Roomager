@@ -52,12 +52,18 @@ namespace Roomager.DataAccess
 
         public int EditData<T>(string sql, T editedData)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Execute(sql, editedData);
+            }
         }
 
         public int DeleteData(string sql, int id)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Execute(sql, new { id = id });
+            }
         }
     }
 }

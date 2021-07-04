@@ -47,5 +47,23 @@ namespace Roomager.DataAccess.DataAccessObjects
 
             return dataAccess.CreateData<PaymentsRecordDTO>(sql, newRecord);
         }
+
+        public int EditRecord(int id, PaymentsRecordDTO editedRecord)
+        {
+            string sql = @"UPDATE PaymentsRecordTable
+                            SET EnergyReading = @EnergyReading, @EnergyUsage = @EnergyUsage, @EnergyCost = @EnergyCost, 
+                                ColdWaterReading = @ColdWaterReading, HotWaterReading = @HotWaterReading, ColdWaterCost = @ColdWaterCost, HotWaterCost = @HotWaterCost, 
+                                    GasCost = @GasCost, NumberOfTenants = @NumberOfTenants, TotalCost = @TotalCost, CostPerPerson = @CostPerPerson, AddDate = @AddDate, Comment = @Comment
+                                        WHERE RecordId = @RecordId";
+
+            return dataAccess.EditData<PaymentsRecordDTO>(sql, editedRecord);
+        }
+
+        public int DeleteRecord(int id)
+        {
+            string sql = @"DELETE FROM PaymentsRecordTable WHERE RecordId = @id";
+
+            return dataAccess.DeleteData(sql, id);
+        }
     }
 }
