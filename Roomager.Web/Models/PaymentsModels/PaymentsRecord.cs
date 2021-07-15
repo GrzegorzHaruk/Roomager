@@ -41,7 +41,7 @@ namespace Roomager.Web.Models.PaymentsModels
         public decimal CostPerPerson { get; set; }
 
         [Required]
-        public DateTime AddDate { get; set; }
+        public DateTime AddDate { get; set; } = DateTime.Now;
 
         public string Comment { get; set; }
     }

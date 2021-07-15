@@ -1,12 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Roomager.Data;
+using Roomager.Services.PaymentsServices;
+using Roomager.Web.Models.PaymentsModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Roomager.Web.Models.PaymentsModels;
-using Roomager.Services.PaymentsServices;
-using Roomager.Data;
-using AutoMapper;
 
 namespace Roomager.Web.Controllers
 {
@@ -21,6 +19,7 @@ namespace Roomager.Web.Controllers
             this.mapper = mapper;
         }
 
+        [HttpGet]
         public IActionResult Index(int pageSize = 12, int pageNr = 1)
         {            
             IEnumerable<PaymentsRecordDTO> recordDTO = recordService.GetRecords(pageSize, pageNr);
@@ -30,24 +29,69 @@ namespace Roomager.Web.Controllers
             return View(records);
         }
 
+        [HttpGet]
         public ViewResult CreateRecord()
         {
-            return View();
+            return View(new PaymentsRecord());
         }
 
-        public ViewResult RecordDetails()
+        [HttpPost]
+        public IActionResult CreateRecord(PaymentsRecord record)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                // gets current number of records and assigns it to a new record
+                var recordsNr = recordService.GetRecords().Max(x => x.RecordId);
+                record.RecordId = recordsNr + 1;
+
+                PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(record);
+                recordService.CreateRecord(recordDTO);
+
+                return View("Index",
+                    mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
+            }
+
+            return View(new PaymentsRecord());
+            
         }
 
-        public ViewResult EditRecord()
+        [HttpGet]
+        public ViewResult RecordDetails(int id)
         {
-            return View();
+            PaymentsRecordDTO recordDto = recordService.GetRecord(id);
+            PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
+            return View(record);
         }
 
-        public ViewResult DeleteRecord()
+        [HttpGet]
+        public ViewResult EditRecord(int id)
         {
-            return View();
+            PaymentsRecordDTO recordDto = recordService.GetRecord(id);
+            PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
+            return View(record);
+        }
+
+        [HttpPost]
+        public ViewResult EditRecord(PaymentsRecord editedRecord)
+        {
+            if (ModelState.IsValid)
+            {
+                PaymentsRecordDTO editedRecordDto = mapper.Map<PaymentsRecordDTO>(editedRecord);
+
+                recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
+
+                return View("Index",
+                        mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
+            }
+
+            return View(editedRecord);            
+        }
+        
+        public IActionResult DeleteRecord(int id)
+        {
+            recordService.DeleteRecord(id);
+            return View("Index",
+                        mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
         }
     }
 }

@@ -14,7 +14,7 @@
                         <h4><b>Delete this Record?</b></h4>
 
                         <div class="form-group" style="padding-top: 10px;">
-                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger" style="width: 40%">Yes</a>
+                            <a asp-action="DeleteRecord" asp-controller="PaymentsManager" asp-route-id="@Model.RecordId" class="btn btn-danger" style="width: 40%">Yes</a>
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-primary" style="width: 40%">Cancel</a>
                         </div>
 

@@ -1,0 +1,11 @@
+﻿1>------ Build started: Project: Roomager.Data, Configuration: Debug Any CPU ------
+1>Roomager.Data -> C:\Projects\Roomager\Roomager.Data\bin\Debug\netcoreapp3.1\Roomager.Data.dll
+2>------ Build started: Project: Roomager.DataAccess, Configuration: Debug Any CPU ------
+2>Roomager.DataAccess -> C:\Projects\Roomager\Roomager.DataAccess\bin\Debug\netcoreapp3.1\Roomager.DataAccess.dll
+3>------ Build started: Project: Roomager.Services, Configuration: Debug Any CPU ------
+3>Roomager.Services -> C:\Projects\Roomager\Roomager.Services\bin\Debug\netcoreapp3.1\Roomager.Services.dll
+4>------ Build started: Project: Roomager.Web, Configuration: Debug Any CPU ------
+4>Roomager.Web -> C:\Projects\Roomager\Roomager.Web\bin\Debug\netcoreapp3.1\Roomager.Web.dll
+4>Roomager.Web -> C:\Projects\Roomager\Roomager.Web\bin\Debug\netcoreapp3.1\Roomager.Web.Views.dll
+========== Build: 4 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Deploy: 0 succeeded, 0 failed, 0 skipped ==========
