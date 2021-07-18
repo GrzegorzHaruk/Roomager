@@ -86,8 +86,17 @@ namespace Roomager.Web.Controllers
 
             return View(editedRecord);            
         }
+
         
-        public IActionResult DeleteRecord(int id)
+        public ViewResult DeleteRecord(int id)
+        {
+            PaymentsRecordDTO recordDto = recordService.GetRecord(id);
+            PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
+            return View(record);
+        }
+
+        [HttpPost, ActionName("DeleteRecord")]
+        public IActionResult ConfirmDeleteRecord(int id)
         {
             recordService.DeleteRecord(id);
             return View("Index",
