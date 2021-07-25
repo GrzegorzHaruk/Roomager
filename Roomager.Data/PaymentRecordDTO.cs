@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Roomager.Data
 {
-    public class PaymentsRecordDTO : IPaymentRecord
+    public class PaymentsRecordDTO
     {
         public int RecordId { get; set; }
 

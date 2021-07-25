@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Roomager.Data;
 using Roomager.Services.PaymentsServices;
 using Roomager.Web.Models.PaymentsModels;
+using Roomager.Web.Viewmodels.PaymentsViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,7 +23,7 @@ namespace Roomager.Web.Controllers
 
         [HttpGet]
         public IActionResult Index(int pageSize = 12, int pageNr = 1)
-        {            
+        {
             IEnumerable<PaymentsRecordDTO> recordDTO = recordService.GetRecords(pageSize, pageNr);
             
             IEnumerable<PaymentsRecord> records = mapper.Map<IEnumerable<PaymentsRecord>>(recordDTO);
@@ -60,6 +62,7 @@ namespace Roomager.Web.Controllers
         {
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
+
             return View(record);
         }
 

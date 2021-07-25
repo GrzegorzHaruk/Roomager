@@ -25,7 +25,9 @@ namespace Roomager.Web
 
             services.AddTransient<IDataAccess, DapperDataAccess>();
             services.AddTransient<IPaymentsRecordDAO, PaymentsRecordDAO>();
+            services.AddTransient<IPaymentsConfigDAO, PaymentsConfigDAO>();
             services.AddTransient<IPaymentsRecordService, PaymentsRecordService>();
+            services.AddTransient<IPaymentsConfigService, PaymentsConfigService>();
 
             services.AddAutoMapper(typeof(Startup));
         }

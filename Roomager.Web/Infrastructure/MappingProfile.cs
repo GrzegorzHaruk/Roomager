@@ -13,6 +13,10 @@ namespace Roomager.Web.Infrastructure
         public MappingProfile()
         {
             CreateMap<PaymentsRecordDTO, PaymentsRecord>().ReverseMap();
+            CreateMap<PaymentConfigDTO, PaymentsConfig>().ReverseMap();
+            CreateMap<EnergyPaymentConfigDTO, EnergyPaymentsConfig>().ReverseMap();
+            CreateMap<WaterPaymentConfigDTO, WaterPaymentsConfig>().ReverseMap();
+            CreateMap<GasPaymentConfigDTO, GasPaymentsConfig>().ReverseMap();            
         }
     }
 }

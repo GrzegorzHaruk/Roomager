@@ -2,15 +2,12 @@
 
 namespace Roomager.Data
 {
-    public class PaymentConfigDTO : IPaymentConfig
+    public class PaymentConfigDTO
     {
-        public int ConfigId { get; set; }
-        public DateTime AddTime { get; set; }
+        public int ConfigId { get; set; }        
 
-        public IEnergyPaymentConfig EnergyPaymentConfig { get; set; }
-        public decimal ColdWaterFee { get; set; }
-        public decimal HotWaterFee { get; set; }
-        public decimal GasFee { get; set; }
-        public DateTime AddDate { get; set; }
+        public EnergyPaymentConfigDTO EnergyPaymentConfig { get; set; }
+        public WaterPaymentConfigDTO WaterPaymentConfig { get; set; }
+        public GasPaymentConfigDTO GasPaymentConfig { get; set; }
     }
 }

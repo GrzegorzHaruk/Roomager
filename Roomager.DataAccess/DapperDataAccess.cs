@@ -42,6 +42,14 @@ namespace Roomager.DataAccess
             }
         }
 
+        public T GetSingleDataJoined<T, Tone, Ttwo, Tthree>(string sql, int id, Func<T, Tone, Ttwo, Tthree, T> mapFunc, string splitOn)
+        {
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Query<T, Tone, Ttwo, Tthree, T>(sql, mapFunc, new {id}, splitOn: $"{splitOn}, {splitOn}, {splitOn}").SingleOrDefault();
+            }
+        }
+
         public int CreateData<T>(string sql, T newData)
         {
             using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))

@@ -9,7 +9,7 @@ namespace Roomager.Services.PaymentsServices
 {
     public class PaymentsRecordService : IPaymentsRecordService
     {
-        IPaymentsRecordDAO paymentsRecordDAO;
+        private IPaymentsRecordDAO paymentsRecordDAO;
 
         public PaymentsRecordService(IPaymentsRecordDAO paymentsRecordDAO)
         {
