@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Roomager.Web.Models.PaymentsModels
+namespace Roomager.Data
 {
-    public class WaterPaymentsConfig
+    public class WaterPaymentsConfigDTO
     {
         public int ConfigId { get; set; }
 

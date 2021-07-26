@@ -13,11 +13,13 @@ namespace Roomager.Web.Controllers
     public class PaymentsManagerController : Controller
     {
         private IPaymentsRecordService recordService;
+        private IPaymentsConfigService configService;
         private IMapper mapper;
 
-        public PaymentsManagerController(IPaymentsRecordService recordService, IMapper mapper)
+        public PaymentsManagerController(IPaymentsRecordService recordService, IPaymentsConfigService configService, IMapper mapper)
         {
             this.recordService = recordService;
+            this.configService = configService;
             this.mapper = mapper;
         }
 
@@ -42,7 +44,7 @@ namespace Roomager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // gets current number of records and assigns it to a new record
+                // gets current number of records and assigns it to a new record Id
                 var recordsNr = recordService.GetRecords().Max(x => x.RecordId);
                 record.RecordId = recordsNr + 1;
 

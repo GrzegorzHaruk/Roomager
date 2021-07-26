@@ -4,11 +4,10 @@ using System.Text;
 
 namespace Roomager.Data
 {
-    public class WaterPaymentConfigDTO
+    public class GasPaymentsConfigDTO
     {
         public int ConfigId { get; set; }
 
-        public decimal ColdWaterFee { get; set; }
-        public decimal HotWaterFee { get; set; }
+        public decimal GasFee { get; set; }
     }
 }

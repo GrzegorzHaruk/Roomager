@@ -6,8 +6,8 @@ namespace Roomager.Data
     {
         public int ConfigId { get; set; }        
 
-        public EnergyPaymentConfigDTO EnergyPaymentConfig { get; set; }
-        public WaterPaymentConfigDTO WaterPaymentConfig { get; set; }
-        public GasPaymentConfigDTO GasPaymentConfig { get; set; }
+        public EnergyPaymentsConfigDTO EnergyPaymentConfig { get; set; }
+        public WaterPaymentsConfigDTO WaterPaymentConfig { get; set; }
+        public GasPaymentsConfigDTO GasPaymentConfig { get; set; }
     }
 }

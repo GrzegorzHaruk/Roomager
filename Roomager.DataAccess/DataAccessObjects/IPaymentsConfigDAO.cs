@@ -7,19 +7,19 @@ namespace Roomager.DataAccess.DataAccessObjects
 {
     public interface IPaymentsConfigDAO
     {
-        EnergyPaymentConfigDTO GetEnergyConfig(int id);
-        WaterPaymentConfigDTO GetWaterConfig(int id);
-        GasPaymentConfigDTO GetGasConfig(int id);
+        EnergyPaymentsConfigDTO GetEnergyConfig(int id);
+        WaterPaymentsConfigDTO GetWaterConfig(int id);
+        GasPaymentsConfigDTO GetGasConfig(int id);
 
         PaymentConfigDTO GetConfig(int id);
 
-        int CreateEnergyConfig(EnergyPaymentConfigDTO energyConfig);
-        int CreateWaterConfig(WaterPaymentConfigDTO waterConfig);
-        int CreateGasConfig(GasPaymentConfigDTO gasConfig);
+        int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig);
+        int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig);
+        int CreateGasConfig(GasPaymentsConfigDTO gasConfig);
 
-        int EditEnergyConfig(int id, EnergyPaymentConfigDTO energyConfig);
-        int EditWaterConfig(int id, WaterPaymentConfigDTO energyConfig);
-        int EditGasConfig(int id, GasPaymentConfigDTO energyConfig);
+        int EditEnergyConfig(int id, EnergyPaymentsConfigDTO energyConfig);
+        int EditWaterConfig(int id, WaterPaymentsConfigDTO energyConfig);
+        int EditGasConfig(int id, GasPaymentsConfigDTO energyConfig);
 
         int DeleteEnergyConfig(int id);
         int DeleteWaterConfig(int id);

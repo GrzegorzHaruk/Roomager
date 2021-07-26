@@ -28,7 +28,7 @@ namespace Roomager.DataAccess.DataAccessObjects
                                                     WHERE PC.Id = @id";
 
             return dataAccess.GetSingleDataJoined
-                <PaymentConfigDTO, EnergyPaymentConfigDTO, WaterPaymentConfigDTO, GasPaymentConfigDTO>
+                <PaymentConfigDTO, EnergyPaymentsConfigDTO, WaterPaymentsConfigDTO, GasPaymentsConfigDTO>
                 (sql,
                 id,
                 (paymentConfig, energyConfig, waterConfig, gasConfig) =>
@@ -43,58 +43,58 @@ namespace Roomager.DataAccess.DataAccessObjects
                 );
         }
 
-        public EnergyPaymentConfigDTO GetEnergyConfig(int id)
+        public EnergyPaymentsConfigDTO GetEnergyConfig(int id)
         {
             string sql = "SELECT * FROM EnergyPaymentConfigTable WHERE ConfigId = @id";
 
-            return dataAccess.GetSingleData<EnergyPaymentConfigDTO>(sql, id);
+            return dataAccess.GetSingleData<EnergyPaymentsConfigDTO>(sql, id);
         }
 
-        public WaterPaymentConfigDTO GetWaterConfig(int id)
+        public WaterPaymentsConfigDTO GetWaterConfig(int id)
         {
             string sql = "SELECT * FROM WaterPaymentConfigTable WHERE ConfigId = @id";
 
-            return dataAccess.GetSingleData<WaterPaymentConfigDTO>(sql, id);
+            return dataAccess.GetSingleData<WaterPaymentsConfigDTO>(sql, id);
         }
 
-        public GasPaymentConfigDTO GetGasConfig(int id)
+        public GasPaymentsConfigDTO GetGasConfig(int id)
         {
             string sql = "SELECT * FROM GasPaymentConfigTable WHERE ConfigId = @id";
 
-            return dataAccess.GetSingleData<GasPaymentConfigDTO>(sql, id);
+            return dataAccess.GetSingleData<GasPaymentsConfigDTO>(sql, id);
         }
 
         //Create
 
-        public int CreateEnergyConfig(EnergyPaymentConfigDTO energyConfig)
+        public int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
         {
             string sql = @"INSERT INTO EnergyPaymentConfigTable 
                             (ConfigId, AddDate, SellFee, DistributionFee, CogenerationFee, FixedDistributionFee, FixedTemporaryFee, FixedSubscriptionFee, Tax)
                                 VALUES (@ConfigId, @AddDate, @SellFee, @DistributionFee, @CogenerationFee, @FixedDistributionFee, @FixedTemporaryFee, @FixedSubscriptionFee, @Tax)";
 
-            return dataAccess.CreateData<EnergyPaymentConfigDTO>(sql, energyConfig);            
+            return dataAccess.CreateData<EnergyPaymentsConfigDTO>(sql, energyConfig);            
         }
 
-        public int CreateWaterConfig(WaterPaymentConfigDTO waterConfig)
+        public int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig)
         {
             string sql = @"INSERT INTO WaterPaymentConfigTable
                             (ConfigId, AddDate, ColdWaterFee, HotWaterFee)
                                 VALUES (@ConfigId, @AddDate, @ColdWaterFee, @HotWaterFee)";
 
-            return dataAccess.CreateData<WaterPaymentConfigDTO>(sql, waterConfig);            
+            return dataAccess.CreateData<WaterPaymentsConfigDTO>(sql, waterConfig);            
         }
 
-        public int CreateGasConfig(GasPaymentConfigDTO gasConfig)
+        public int CreateGasConfig(GasPaymentsConfigDTO gasConfig)
         {
             string sql = @"INSERT INTO GasPaymentConfigTable
                             (ConfigId, AddDate, GasFee)
                                 VALUES (@ConfigId, @AddDate, @GasFee)";
-            return dataAccess.CreateData<GasPaymentConfigDTO>(sql, gasConfig);
+            return dataAccess.CreateData<GasPaymentsConfigDTO>(sql, gasConfig);
         }
 
         //Edit
 
-        public int EditEnergyConfig(int id, EnergyPaymentConfigDTO energyConfig)
+        public int EditEnergyConfig(int id, EnergyPaymentsConfigDTO energyConfig)
         {
             string sql = @"UPDATE EnergyPaymentConfigTable
                             SET (ConfigId = @ConfigId, AddDate = @AddDate, SellFee = @SellFee, DistributionFee = @DistributionFee, 
@@ -102,25 +102,25 @@ namespace Roomager.DataAccess.DataAccessObjects
                                     FixedSubscriptionFee = @FixedSubscriptionFee, Tax = @Tax)
                                         WHERE ConfigId = @id";
 
-            return dataAccess.EditData<EnergyPaymentConfigDTO>(sql, energyConfig);
+            return dataAccess.EditData<EnergyPaymentsConfigDTO>(sql, energyConfig);
         }
 
-        public int EditWaterConfig(int id, WaterPaymentConfigDTO waterConfig)
+        public int EditWaterConfig(int id, WaterPaymentsConfigDTO waterConfig)
         {
             string sql = @"UPDATE WaterPaymentConfigTable
                             SET (ConfigId = @ConfigId, AddDate = @AddDate, ColdWaterFee = @ColdWaterFee, HotWaterFee = @HotWaterFee)
                                 WHERE ConfigId = @id";
 
-            return dataAccess.EditData<WaterPaymentConfigDTO>(sql, waterConfig);
+            return dataAccess.EditData<WaterPaymentsConfigDTO>(sql, waterConfig);
         }
 
-        public int EditGasConfig(int id, GasPaymentConfigDTO gasConfig)
+        public int EditGasConfig(int id, GasPaymentsConfigDTO gasConfig)
         {
             string sql = @"UPDATE GasPaymentConfigTable
                             SET (ConfigId = @ConfigId, AddDate = @AddDate, GasFee = @GasFee)
                                 WHERE ConfigId = @id";
 
-            return dataAccess.EditData<GasPaymentConfigDTO>(sql, gasConfig);
+            return dataAccess.EditData<GasPaymentsConfigDTO>(sql, gasConfig);
         }
 
         //Delete

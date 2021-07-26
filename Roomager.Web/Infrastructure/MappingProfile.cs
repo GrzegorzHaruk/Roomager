@@ -12,11 +12,18 @@ namespace Roomager.Web.Infrastructure
     {
         public MappingProfile()
         {
+            
+
             CreateMap<PaymentsRecordDTO, PaymentsRecord>().ReverseMap();
-            CreateMap<PaymentConfigDTO, PaymentsConfig>().ReverseMap();
-            CreateMap<EnergyPaymentConfigDTO, EnergyPaymentsConfig>().ReverseMap();
-            CreateMap<WaterPaymentConfigDTO, WaterPaymentsConfig>().ReverseMap();
-            CreateMap<GasPaymentConfigDTO, GasPaymentsConfig>().ReverseMap();            
+            
+            CreateMap<EnergyPaymentsConfigDTO, EnergyPaymentsConfig>().ReverseMap();
+            CreateMap<WaterPaymentsConfigDTO, WaterPaymentsConfig>().ReverseMap();
+            CreateMap<GasPaymentsConfigDTO, GasPaymentsConfig>().ReverseMap();
+            CreateMap<PaymentConfigDTO, PaymentsConfig>()
+                .ForMember(a => a.Id, b => b.MapFrom(c => c.ConfigId))
+                .ForMember(a => a.EnergyPaymentConfig, b => b.MapFrom(c => c.EnergyPaymentConfig))
+                .ForMember(a => a.WaterPaymentsConfig, b => b.MapFrom(c => c.WaterPaymentConfig))
+                .ForMember(a => a.GasPaymentsConfig, b => b.MapFrom(c => c.GasPaymentConfig));
         }
     }
 }
