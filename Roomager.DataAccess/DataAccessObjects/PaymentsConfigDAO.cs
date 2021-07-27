@@ -14,9 +14,7 @@ namespace Roomager.DataAccess.DataAccessObjects
             this.dataAccess = dataAccess;
         }
 
-        //Get
-
-        public PaymentConfigDTO GetConfig(int id)
+        public PaymentsConfigDTO GetConfig(int id)
         {
             string sql = @"SELECT * FROM PaymentsConfigTable AS PC
                             INNER JOIN EnergyPaymentConfigTable AS EC
@@ -28,12 +26,12 @@ namespace Roomager.DataAccess.DataAccessObjects
                                                     WHERE PC.Id = @id";
 
             return dataAccess.GetSingleDataJoined
-                <PaymentConfigDTO, EnergyPaymentsConfigDTO, WaterPaymentsConfigDTO, GasPaymentsConfigDTO>
+                <PaymentsConfigDTO, EnergyPaymentsConfigDTO, WaterPaymentsConfigDTO, GasPaymentsConfigDTO>
                 (sql,
                 id,
                 (paymentConfig, energyConfig, waterConfig, gasConfig) =>
                 {
-                    paymentConfig.ConfigId = id;
+                    paymentConfig.Id = id;
                     paymentConfig.EnergyPaymentConfig = energyConfig;
                     paymentConfig.WaterPaymentConfig = waterConfig;
                     paymentConfig.GasPaymentConfig = gasConfig;
@@ -43,52 +41,60 @@ namespace Roomager.DataAccess.DataAccessObjects
                 );
         }
 
-        public EnergyPaymentsConfigDTO GetEnergyConfig(int id)
+        public int CreateConfig(PaymentsConfigDTO config)
         {
-            string sql = "SELECT * FROM EnergyPaymentConfigTable WHERE ConfigId = @id";
+            int rowsAffected = 0;
 
-            return dataAccess.GetSingleData<EnergyPaymentsConfigDTO>(sql, id);
+            if (config != null)
+            {
+                string sql = @"INSERT INTO PaymentsConfigTable 
+                                (Id, EnergyConfigId, WaterConfigId, GasConfigId)
+                                    VALUES (@Id, @Id, @Id, @Id)";
+                rowsAffected = dataAccess.CreateData<PaymentsConfigDTO>(sql, config);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = CreateEnergyConfig(config.EnergyPaymentConfig);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = CreateWaterConfig(config.WaterPaymentConfig);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = CreateGasConfig(config.GasPaymentConfig);
+            }
+
+            return rowsAffected;
         }
 
-        public WaterPaymentsConfigDTO GetWaterConfig(int id)
+        private int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
         {
-            string sql = "SELECT * FROM WaterPaymentConfigTable WHERE ConfigId = @id";
-
-            return dataAccess.GetSingleData<WaterPaymentsConfigDTO>(sql, id);
-        }
-
-        public GasPaymentsConfigDTO GetGasConfig(int id)
-        {
-            string sql = "SELECT * FROM GasPaymentConfigTable WHERE ConfigId = @id";
-
-            return dataAccess.GetSingleData<GasPaymentsConfigDTO>(sql, id);
-        }
-
-        //Create
-
-        public int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
-        {
-            string sql = @"INSERT INTO EnergyPaymentConfigTable 
-                            (ConfigId, AddDate, SellFee, DistributionFee, CogenerationFee, FixedDistributionFee, FixedTemporaryFee, FixedSubscriptionFee, Tax)
-                                VALUES (@ConfigId, @AddDate, @SellFee, @DistributionFee, @CogenerationFee, @FixedDistributionFee, @FixedTemporaryFee, @FixedSubscriptionFee, @Tax)";
-
+            string sql = @"INSERT INTO EnergyPaymentConfigTable
+                                (ConfigId, SellFee, DistributionFee, CogenerationFee, FixedDistributionFee, FixedTemporaryFee, FixedSubscriptionFee, Tax)
+                                    VALUES (@ConfigId, @SellFee, @DistributionFee, @CogenerationFee, @FixedDistributionFee, @FixedTemporaryFee, @FixedSubscriptionFee, @Tax)";
+            
             return dataAccess.CreateData<EnergyPaymentsConfigDTO>(sql, energyConfig);            
         }
 
-        public int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig)
+        private int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig)
         {
             string sql = @"INSERT INTO WaterPaymentConfigTable
-                            (ConfigId, AddDate, ColdWaterFee, HotWaterFee)
-                                VALUES (@ConfigId, @AddDate, @ColdWaterFee, @HotWaterFee)";
+                                (ConfigId, ColdWaterFee, HotWaterFee)
+                                    VALUES (@ConfigId, @ColdWaterFee, @HotWaterFee)";
 
             return dataAccess.CreateData<WaterPaymentsConfigDTO>(sql, waterConfig);            
         }
 
-        public int CreateGasConfig(GasPaymentsConfigDTO gasConfig)
+        private int CreateGasConfig(GasPaymentsConfigDTO gasConfig)
         {
             string sql = @"INSERT INTO GasPaymentConfigTable
-                            (ConfigId, AddDate, GasFee)
-                                VALUES (@ConfigId, @AddDate, @GasFee)";
+                                (ConfigId, GasFee)
+                                    VALUES (@ConfigId, @GasFee)";
+
             return dataAccess.CreateData<GasPaymentsConfigDTO>(sql, gasConfig);
         }
 

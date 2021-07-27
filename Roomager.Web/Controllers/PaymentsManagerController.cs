@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Roomager.Data;
 using Roomager.Services.PaymentsServices;
 using Roomager.Web.Models.PaymentsModels;
-using Roomager.Web.Viewmodels.PaymentsViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,12 +50,10 @@ namespace Roomager.Web.Controllers
                 PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(record);
                 recordService.CreateRecord(recordDTO);
 
-                return View("Index",
-                    mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
+                return RedirectToAction("Index");
             }
 
-            return View(new PaymentsRecord());
-            
+            return View(new PaymentsRecord());            
         }
 
         [HttpGet]
@@ -77,7 +74,7 @@ namespace Roomager.Web.Controllers
         }
 
         [HttpPost]
-        public ViewResult EditRecord(PaymentsRecord editedRecord)
+        public IActionResult EditRecord(PaymentsRecord editedRecord)
         {
             if (ModelState.IsValid)
             {
@@ -85,8 +82,7 @@ namespace Roomager.Web.Controllers
 
                 recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
 
-                return View("Index",
-                        mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
+                return RedirectToAction("Index");
             }
 
             return View(editedRecord);            
@@ -104,8 +100,33 @@ namespace Roomager.Web.Controllers
         public IActionResult ConfirmDeleteRecord(int id)
         {
             recordService.DeleteRecord(id);
-            return View("Index",
-                        mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecords(12, 1)));
+
+            return RedirectToAction("Index");
+        }
+
+        private int CreateData()
+        {
+            PaymentsConfigDTO configDTO = new PaymentsConfigDTO
+            {
+                Id = 6,
+                EnergyPaymentConfig = new EnergyPaymentsConfigDTO
+                {
+                    ConfigId = 6
+                },
+                WaterPaymentConfig = new WaterPaymentsConfigDTO
+                {
+                    ConfigId = 6,
+                    ColdWaterFee = 10,
+                    HotWaterFee = 13
+                },
+                GasPaymentConfig = new GasPaymentsConfigDTO
+                {
+                    ConfigId = 6,
+                    GasFee = 7
+                }
+            };
+
+            return configService.CreateConfig(configDTO);
         }
     }
 }

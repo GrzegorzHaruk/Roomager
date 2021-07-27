@@ -19,8 +19,7 @@ namespace Roomager.Web.Infrastructure
             CreateMap<EnergyPaymentsConfigDTO, EnergyPaymentsConfig>().ReverseMap();
             CreateMap<WaterPaymentsConfigDTO, WaterPaymentsConfig>().ReverseMap();
             CreateMap<GasPaymentsConfigDTO, GasPaymentsConfig>().ReverseMap();
-            CreateMap<PaymentConfigDTO, PaymentsConfig>()
-                .ForMember(a => a.Id, b => b.MapFrom(c => c.ConfigId))
+            CreateMap<PaymentsConfigDTO, PaymentsConfig>()                
                 .ForMember(a => a.EnergyPaymentConfig, b => b.MapFrom(c => c.EnergyPaymentConfig))
                 .ForMember(a => a.WaterPaymentsConfig, b => b.MapFrom(c => c.WaterPaymentConfig))
                 .ForMember(a => a.GasPaymentsConfig, b => b.MapFrom(c => c.GasPaymentConfig));

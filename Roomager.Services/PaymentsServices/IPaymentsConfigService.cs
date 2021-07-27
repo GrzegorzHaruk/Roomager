@@ -5,6 +5,7 @@ namespace Roomager.Services.PaymentsServices
 {
     public interface IPaymentsConfigService
     {
-        PaymentConfigDTO GetConfig(int id);
+        PaymentsConfigDTO GetConfig(int id);
+        int CreateConfig(PaymentsConfigDTO config);
     }
 }

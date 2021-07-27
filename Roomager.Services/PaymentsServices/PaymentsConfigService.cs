@@ -15,15 +15,28 @@ namespace Roomager.Services.PaymentsServices
             this.paymentsConfigDAO = paymentsConfigDAO;
         }
 
-        public PaymentConfigDTO GetConfig(int id)
+        public PaymentsConfigDTO GetConfig(int id)
         {
-            PaymentConfigDTO config = paymentsConfigDAO.GetConfig(id);
+            PaymentsConfigDTO config = paymentsConfigDAO.GetConfig(id);
             if (config != null)
             {
                 return config;
             }
 
             return config;
+        }
+
+        public int CreateConfig(PaymentsConfigDTO config)
+        {
+            int rowsAffected = 0;
+
+            if (config != null)
+            {
+                rowsAffected = paymentsConfigDAO.CreateConfig(config);
+                return rowsAffected;
+            }
+
+            return rowsAffected;
         }
     }
 }
