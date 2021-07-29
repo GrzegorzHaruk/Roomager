@@ -71,6 +71,60 @@ namespace Roomager.DataAccess.DataAccessObjects
             return rowsAffected;
         }
 
+        public int EditConfig(PaymentsConfigDTO editedConfig)
+        {
+            int rowsAffected = 0;
+            
+            if (editedConfig != null)
+            {
+                rowsAffected = EditEnergyConfig(editedConfig.EnergyPaymentConfig);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = EditWaterConfig(editedConfig.WaterPaymentConfig);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = EditGasConfig(editedConfig.GasPaymentConfig);
+            }
+
+            return rowsAffected;
+        }
+
+        public int DeleteConfig(int id)
+        {
+            int rowsAffected = 0;            
+
+            if (id >= 0)
+            {
+                rowsAffected = DeleteGasConfig(id);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = DeleteWaterConfig(id);
+            }
+
+            if (rowsAffected == 1)
+            {
+                rowsAffected = DeleteEnergyConfig(id);
+            }
+
+            if (rowsAffected == 1)
+            {
+                string sql = @"DELETE FROM PaymentsConfigTable 
+                            WHERE Id = @id";
+
+                rowsAffected = dataAccess.DeleteData(sql, id);
+            }
+
+            return rowsAffected;
+        }
+
+        //Private Create
+
         private int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
         {
             string sql = @"INSERT INTO EnergyPaymentConfigTable
@@ -98,56 +152,59 @@ namespace Roomager.DataAccess.DataAccessObjects
             return dataAccess.CreateData<GasPaymentsConfigDTO>(sql, gasConfig);
         }
 
-        //Edit
+        //Private Edit
 
-        public int EditEnergyConfig(int id, EnergyPaymentsConfigDTO energyConfig)
+        private int EditEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
         {
             string sql = @"UPDATE EnergyPaymentConfigTable
-                            SET (ConfigId = @ConfigId, AddDate = @AddDate, SellFee = @SellFee, DistributionFee = @DistributionFee, 
+                            SET ConfigId = @ConfigId, SellFee = @SellFee, DistributionFee = @DistributionFee, 
                                 CogenerationFee = @CogenerationFee, FixedDistributionFee = @FixedDistributionFee, FixedTemporaryFee = @FixedTemporaryFee, 
-                                    FixedSubscriptionFee = @FixedSubscriptionFee, Tax = @Tax)
-                                        WHERE ConfigId = @id";
+                                    FixedSubscriptionFee = @FixedSubscriptionFee, Tax = @Tax
+                                        WHERE ConfigId = @ConfigId";
 
             return dataAccess.EditData<EnergyPaymentsConfigDTO>(sql, energyConfig);
         }
 
-        public int EditWaterConfig(int id, WaterPaymentsConfigDTO waterConfig)
+        public int EditWaterConfig(WaterPaymentsConfigDTO waterConfig)
         {
             string sql = @"UPDATE WaterPaymentConfigTable
-                            SET (ConfigId = @ConfigId, AddDate = @AddDate, ColdWaterFee = @ColdWaterFee, HotWaterFee = @HotWaterFee)
-                                WHERE ConfigId = @id";
+                            SET ConfigId = @ConfigId, ColdWaterFee = @ColdWaterFee, HotWaterFee = @HotWaterFee
+                                WHERE ConfigId = @ConfigId";
 
             return dataAccess.EditData<WaterPaymentsConfigDTO>(sql, waterConfig);
         }
 
-        public int EditGasConfig(int id, GasPaymentsConfigDTO gasConfig)
+        public int EditGasConfig(GasPaymentsConfigDTO gasConfig)
         {
             string sql = @"UPDATE GasPaymentConfigTable
-                            SET (ConfigId = @ConfigId, AddDate = @AddDate, GasFee = @GasFee)
-                                WHERE ConfigId = @id";
+                            SET ConfigId = @ConfigId, GasFee = @GasFee
+                                WHERE ConfigId = @ConfigId";
 
             return dataAccess.EditData<GasPaymentsConfigDTO>(sql, gasConfig);
         }
 
-        //Delete
+        //Private Delete
 
         public int DeleteEnergyConfig(int id)
         {
-            string sql = @"DELETE FROM EnergyPaymentConfigTable WHERE ConfigId = @id";
+            string sql = @"DELETE FROM EnergyPaymentConfigTable 
+                            WHERE ConfigId = @id";
 
             return dataAccess.DeleteData(sql, id);
         }
 
         public int DeleteWaterConfig(int id)
         {
-            string sql = @"DELETE FROM WaterPaymentConfigTable WHERE ConfigId = @id";
+            string sql = @"DELETE FROM WaterPaymentConfigTable 
+                            WHERE ConfigId = @id";
 
             return dataAccess.DeleteData(sql, id);
         }
 
         public int DeleteGasConfig(int id)
         {
-            string sql = @"DELETE FROM GasPaymentConfigTable WHERE ConfigId = @id";
+            string sql = @"DELETE FROM GasPaymentConfigTable 
+                            WHERE ConfigId = @id";
 
             return dataAccess.DeleteData(sql, id);
         }

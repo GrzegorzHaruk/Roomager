@@ -7,5 +7,7 @@ namespace Roomager.Services.PaymentsServices
     {
         PaymentsConfigDTO GetConfig(int id);
         int CreateConfig(PaymentsConfigDTO config);
+        int EditConfig(PaymentsConfigDTO editedConfig);
+        int DeleteConfig(int id);
     }
 }

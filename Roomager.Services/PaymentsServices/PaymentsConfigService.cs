@@ -38,5 +38,29 @@ namespace Roomager.Services.PaymentsServices
 
             return rowsAffected;
         }
+
+        public int EditConfig(PaymentsConfigDTO editedConfig)
+        {
+            int rowsAffected = 0;
+
+            if (editedConfig != null)
+            {
+                rowsAffected = paymentsConfigDAO.EditConfig(editedConfig);
+            }
+
+            return rowsAffected;
+        }
+
+        public int DeleteConfig(int id)
+        {
+            int rowsAffected = 0;
+
+            if (id >= 0)
+            {
+                rowsAffected = paymentsConfigDAO.DeleteConfig(id);
+            }
+
+            return rowsAffected;
+        }
     }
 }

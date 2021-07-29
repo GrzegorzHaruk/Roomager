@@ -104,7 +104,7 @@ namespace Roomager.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private int CreateData()
+        private int SaveFakeConfig()
         {
             PaymentsConfigDTO configDTO = new PaymentsConfigDTO
             {
@@ -127,6 +127,34 @@ namespace Roomager.Web.Controllers
             };
 
             return configService.CreateConfig(configDTO);
+        }
+
+        private PaymentsConfigDTO CreateFakeConfigObject(int id)
+        {
+            PaymentsConfigDTO configDTO = new PaymentsConfigDTO
+            {
+                Id = id,
+                EnergyPaymentConfig = new EnergyPaymentsConfigDTO
+                {
+                    ConfigId = id,
+                    CogenerationFee = 48888,
+                    DistributionFee = 3888,
+                    FixedSubscriptionFee = 88885
+                },
+                WaterPaymentConfig = new WaterPaymentsConfigDTO
+                {
+                    ConfigId = id,
+                    ColdWaterFee = 10,
+                    HotWaterFee = 13
+                },
+                GasPaymentConfig = new GasPaymentsConfigDTO
+                {
+                    ConfigId = id,
+                    GasFee = 7
+                }
+            };
+
+            return configDTO;
         }
     }
 }

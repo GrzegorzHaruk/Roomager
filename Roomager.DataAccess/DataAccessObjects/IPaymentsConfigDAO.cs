@@ -9,6 +9,8 @@ namespace Roomager.DataAccess.DataAccessObjects
     {
         PaymentsConfigDTO GetConfig(int id);
         int CreateConfig(PaymentsConfigDTO config);
+        int EditConfig(PaymentsConfigDTO editedConfig);
+        int DeleteConfig(int id);
 
         //EnergyPaymentsConfigDTO GetEnergyConfig(int id);
         //WaterPaymentsConfigDTO GetWaterConfig(int id);
