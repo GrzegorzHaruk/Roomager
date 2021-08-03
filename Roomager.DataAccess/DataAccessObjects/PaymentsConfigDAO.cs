@@ -25,7 +25,9 @@ namespace Roomager.DataAccess.DataAccessObjects
                                                 ON PC.Id = GC.ConfigId
                                                     WHERE PC.Id = @id";
 
-            return dataAccess.GetSingleDataJoined
+            var test = 
+
+            dataAccess.GetSingleDataJoined
                 <PaymentsConfigDTO, EnergyPaymentsConfigDTO, WaterPaymentsConfigDTO, GasPaymentsConfigDTO>
                 (sql,
                 id,
@@ -39,6 +41,8 @@ namespace Roomager.DataAccess.DataAccessObjects
                 },
                 "ConfigId"
                 );
+
+            return test;
         }
 
         public int CreateConfig(PaymentsConfigDTO config)
@@ -55,17 +59,17 @@ namespace Roomager.DataAccess.DataAccessObjects
 
             if (rowsAffected == 1)
             {
-                rowsAffected = CreateEnergyConfig(config.EnergyPaymentConfig);
+                rowsAffected = CreateEnergyConfig(config.EnergyPaymentConfig, config.Id);
             }
 
             if (rowsAffected == 1)
             {
-                rowsAffected = CreateWaterConfig(config.WaterPaymentConfig);
+                rowsAffected = CreateWaterConfig(config.WaterPaymentConfig, config.Id);
             }
 
             if (rowsAffected == 1)
             {
-                rowsAffected = CreateGasConfig(config.GasPaymentConfig);
+                rowsAffected = CreateGasConfig(config.GasPaymentConfig, config.Id);
             }
 
             return rowsAffected;
@@ -125,8 +129,9 @@ namespace Roomager.DataAccess.DataAccessObjects
 
         //Private Create
 
-        private int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig)
+        private int CreateEnergyConfig(EnergyPaymentsConfigDTO energyConfig, int id)
         {
+            energyConfig.ConfigId = id;
             string sql = @"INSERT INTO EnergyPaymentConfigTable
                                 (ConfigId, SellFee, DistributionFee, CogenerationFee, FixedDistributionFee, FixedTemporaryFee, FixedSubscriptionFee, Tax)
                                     VALUES (@ConfigId, @SellFee, @DistributionFee, @CogenerationFee, @FixedDistributionFee, @FixedTemporaryFee, @FixedSubscriptionFee, @Tax)";
@@ -134,8 +139,9 @@ namespace Roomager.DataAccess.DataAccessObjects
             return dataAccess.CreateData<EnergyPaymentsConfigDTO>(sql, energyConfig);            
         }
 
-        private int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig)
+        private int CreateWaterConfig(WaterPaymentsConfigDTO waterConfig, int id)
         {
+            waterConfig.ConfigId = id;
             string sql = @"INSERT INTO WaterPaymentConfigTable
                                 (ConfigId, ColdWaterFee, HotWaterFee)
                                     VALUES (@ConfigId, @ColdWaterFee, @HotWaterFee)";
@@ -143,8 +149,9 @@ namespace Roomager.DataAccess.DataAccessObjects
             return dataAccess.CreateData<WaterPaymentsConfigDTO>(sql, waterConfig);            
         }
 
-        private int CreateGasConfig(GasPaymentsConfigDTO gasConfig)
+        private int CreateGasConfig(GasPaymentsConfigDTO gasConfig, int id)
         {
+            gasConfig.ConfigId = id;
             string sql = @"INSERT INTO GasPaymentConfigTable
                                 (ConfigId, GasFee)
                                     VALUES (@ConfigId, @GasFee)";

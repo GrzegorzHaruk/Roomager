@@ -14,6 +14,11 @@ namespace Roomager.Web.Viewmodels.PaymentsViewModels
             this.PaymentsConfig = PaymentsConfig;
         }
 
+        public PaymentsRecordViewModel()
+        {
+
+        }
+
         public PaymentsRecord PaymentsRecord { get; set; }
         public PaymentsConfig PaymentsConfig { get; set; }
     }
