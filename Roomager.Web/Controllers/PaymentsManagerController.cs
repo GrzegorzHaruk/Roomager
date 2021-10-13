@@ -42,8 +42,8 @@ namespace Roomager.Web.Controllers
                     EnergyPaymentConfig = new EnergyPaymentsConfig(),
                     WaterPaymentsConfig = new WaterPaymentsConfig(),
                     GasPaymentsConfig = new GasPaymentsConfig()
-                });
-            
+                });            
+
             return View(viewModel);
         }
 
@@ -52,10 +52,7 @@ namespace Roomager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // gets current number of records and assigns it to a new record Id
-                var recordsNr = recordService.GetRecords().Max(x => x.RecordId);                
-                viewModel.PaymentsRecord.RecordId = recordsNr + 1;
-                viewModel.PaymentsConfig.Id = recordsNr + 1;
+                AssignId(viewModel);
 
                 PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
                 PaymentsConfigDTO configDTO = mapper.Map<PaymentsConfigDTO>(viewModel.PaymentsConfig);
@@ -134,6 +131,25 @@ namespace Roomager.Web.Controllers
             configService.DeleteConfig(id);
 
             return RedirectToAction("Index");
+        }
+
+        void AssignId(PaymentsRecordViewModel model)
+        {
+            PaymentsRecordViewModel newModel = model;
+            int recordsNr = 0;
+            // gets current number of records and assigns it to a new record Id
+
+            if (recordService.GetRecords().Count() >= 1)
+            {
+                recordsNr = recordService.GetRecords().Max(x => x.RecordId);
+                model.PaymentsRecord.RecordId = recordsNr + 1;
+                model.PaymentsConfig.Id = recordsNr + 1;
+            }
+            else
+            {
+                model.PaymentsRecord.RecordId = 1;
+                model.PaymentsConfig.Id = 1;
+            }
         }
     }
 }
