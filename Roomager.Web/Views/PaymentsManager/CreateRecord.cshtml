@@ -25,17 +25,7 @@
                             <span asp-validation-for="PaymentsRecord.AddDate" class="text-danger"></span>
                         </div>
 
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.EnergyReading"></label>
-                            <input asp-for="PaymentsRecord.EnergyReading" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.EnergyReading" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.EnergyUsage"></label>
-                            <input asp-for="PaymentsRecord.EnergyUsage" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.EnergyReading" class="text-danger"></span>
-                        </div>
+                        <hr>
 
                         <div class="form-group form-inline">
                             <label asp-for="PaymentsRecord.EnergyCost"></label>
@@ -46,21 +36,9 @@
                         <hr>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.ColdWaterReading"></label>
-                            <input asp-for="PaymentsRecord.ColdWaterReading" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.ColdWaterReading" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
                             <label asp-for="PaymentsRecord.ColdWaterCost"></label>
                             <input asp-for="PaymentsRecord.ColdWaterCost" type="number" class="form-control">
                             <span asp-validation-for="PaymentsRecord.ColdWaterCost" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.HotWaterReading"></label>
-                            <input asp-for="PaymentsRecord.HotWaterReading" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.HotWaterReading" class="text-danger"></span>
                         </div>
 
                         <div class="form-group form-inline">
@@ -118,118 +96,6 @@
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Energy Info
-                    </div>
-                    <div class="panel-body">
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.SellFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.SellFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.SellFee" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.DistributionFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.DistributionFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.DistributionFee" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.CogenerationFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.CogenerationFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.CogenerationFee" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.FixedDistributionFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.FixedDistributionFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.FixedDistributionFee" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.FixedTemporaryFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.FixedTemporaryFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.FixedTemporaryFee" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.FixedSubscriptionFee"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.FixedSubscriptionFee" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.FixedSubscriptionFee" class="text-danger"></span>
-                        </div>
-
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsConfig.EnergyPaymentConfig.Tax"></label>
-                            <input asp-for="PaymentsConfig.EnergyPaymentConfig.Tax" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsConfig.EnergyPaymentConfig.Tax" class="text-danger"></span>
-                        </div>
-
-                        <hr>
-
-                        <div class="form-group form-inline">
-                            <a class="btn btn-default">Save</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="panel-group">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Energy Info
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="form-group form-inline">
-                                <label asp-for="PaymentsConfig.WaterPaymentsConfig.ColdWaterFee"></label>
-                                <input asp-for="PaymentsConfig.WaterPaymentsConfig.ColdWaterFee" type="number" class="form-control">
-                                <span asp-validation-for="PaymentsConfig.WaterPaymentsConfig.ColdWaterFee" class="text-danger"></span>
-                            </div>
-
-                            <div class="form-group form-inline">
-                                <label asp-for="PaymentsConfig.WaterPaymentsConfig.HotWaterFee"></label>
-                                <input asp-for="PaymentsConfig.WaterPaymentsConfig.HotWaterFee" type="number" class="form-control">
-                                <span asp-validation-for="PaymentsConfig.WaterPaymentsConfig.HotWaterFee" class="text-danger"></span>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-group form-inline">
-                                <a class="btn btn-default">Save</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Gas Info
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="form-group form-inline">
-                                <label asp-for="PaymentsConfig.GasPaymentsConfig.GasFee"></label>
-                                <input asp-for="PaymentsConfig.GasPaymentsConfig.GasFee" type="number" class="form-control">
-                                <span asp-validation-for="PaymentsConfig.GasPaymentsConfig.GasFee" class="text-danger"></span>
-                            </div>
-
-                            <hr>
-
-                            <div class="form-group form-inline">
-                                <a class="btn btn-default">Save</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

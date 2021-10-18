@@ -40,12 +40,9 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Date</th>
-                                <th>Energy Reading</th>
-                                <th>Energy Cost</th>
-                                <th>Cold Water Reading</th>
-                                <th>Cold Water Cost</th>
-                                <th>Hot Water Reading</th>
+                                <th>Date</th>                                
+                                <th>Energy Cost</th>                                
+                                <th>Cold Water Cost</th>                                
                                 <th>Hot Water Cost</th>
                                 <th>Gas Cost</th>
                                 <th>Total cost</th>
@@ -69,19 +66,10 @@
                                         @record.AddDate.ToString("MM.dd.yyyy")
                                     </td>
                                     <td>
-                                        @record.EnergyReading
-                                    </td>
-                                    <td>
                                         @record.EnergyCost
                                     </td>
                                     <td>
-                                        @record.ColdWaterReading
-                                    </td>
-                                    <td>
                                         @record.ColdWaterCost
-                                    </td>
-                                    <td>
-                                        @record.HotWaterReading
                                     </td>
                                     <td>
                                         @record.HotWaterCost
@@ -103,7 +91,6 @@
                                         </div>
                                     </td>
                                 </tr>
-
                             }
                         </tbody>
                     </table>
