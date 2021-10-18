@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Roomager.DataAccess;
@@ -25,9 +20,7 @@ namespace Roomager.Web
 
             services.AddTransient<IDataAccess, DapperDataAccess>();
             services.AddTransient<IPaymentsRecordDAO, PaymentsRecordDAO>();
-            services.AddTransient<IPaymentsConfigDAO, PaymentsConfigDAO>();
             services.AddTransient<IPaymentsRecordService, PaymentsRecordService>();
-            services.AddTransient<IPaymentsConfigService, PaymentsConfigService>();
 
             services.AddAutoMapper(typeof(Startup));
         }
