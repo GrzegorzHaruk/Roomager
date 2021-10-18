@@ -4,7 +4,6 @@ using Roomager.Data;
 using Roomager.Services.PaymentsServices;
 using Roomager.Web.Models.PaymentsModels;
 using Roomager.Web.Viewmodels.PaymentsViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,13 +12,12 @@ namespace Roomager.Web.Controllers
     public class PaymentsManagerController : Controller
     {
         private IPaymentsRecordService recordService;
-        private IPaymentsConfigService configService;
         private IMapper mapper;
 
-        public PaymentsManagerController(IPaymentsRecordService recordService, IPaymentsConfigService configService, IMapper mapper)
+        public PaymentsManagerController(IPaymentsRecordService recordService, IMapper mapper)
         {
             this.recordService = recordService;
-            this.configService = configService;
+            
             this.mapper = mapper;
         }
 
@@ -36,13 +34,7 @@ namespace Roomager.Web.Controllers
         [HttpGet]
         public ViewResult CreateRecord()
         {
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(
-                new PaymentsRecord(), 
-                new PaymentsConfig {
-                    EnergyPaymentConfig = new EnergyPaymentsConfig(),
-                    WaterPaymentsConfig = new WaterPaymentsConfig(),
-                    GasPaymentsConfig = new GasPaymentsConfig()
-                });            
+            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(new PaymentsRecord());            
 
             return View(viewModel);
         }
@@ -55,9 +47,7 @@ namespace Roomager.Web.Controllers
                 AssignId(viewModel);
 
                 PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
-                PaymentsConfigDTO configDTO = mapper.Map<PaymentsConfigDTO>(viewModel.PaymentsConfig);
                 int rowsffected = recordService.CreateRecord(recordDTO);
-                int rowsffected2 = configService.CreateConfig(configDTO);
 
                 return RedirectToAction("Index");
             }
@@ -71,10 +61,7 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsConfigDTO configDTO = configService.GetConfig(id);
-            PaymentsConfig config = mapper.Map<PaymentsConfig>(configDTO);
-
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record, config);
+            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
 
             return View(viewModel);
         }
@@ -85,10 +72,7 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsConfigDTO configDTO = configService.GetConfig(id);
-            PaymentsConfig config = mapper.Map<PaymentsConfig>(configDTO);
-
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record, config);
+            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
 
             return View(viewModel);
         }
@@ -99,10 +83,7 @@ namespace Roomager.Web.Controllers
             if (ModelState.IsValid)
             {
                 PaymentsRecordDTO editedRecordDto = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
-                PaymentsConfigDTO configDTO = mapper.Map<PaymentsConfigDTO>(viewModel.PaymentsConfig);
-
                 recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
-                configService.EditConfig(configDTO);
 
                 return RedirectToAction("Index");
             }
@@ -116,10 +97,7 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsConfigDTO configDTO = configService.GetConfig(id);
-            PaymentsConfig config = mapper.Map<PaymentsConfig>(configDTO);
-
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record, config);
+            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
 
             return View(viewModel);
         }
@@ -128,7 +106,6 @@ namespace Roomager.Web.Controllers
         public IActionResult ConfirmDeleteRecord(int id)
         {
             recordService.DeleteRecord(id);
-            configService.DeleteConfig(id);
 
             return RedirectToAction("Index");
         }
@@ -143,12 +120,10 @@ namespace Roomager.Web.Controllers
             {
                 recordsNr = recordService.GetRecords().Max(x => x.RecordId);
                 model.PaymentsRecord.RecordId = recordsNr + 1;
-                model.PaymentsConfig.Id = recordsNr + 1;
             }
             else
             {
                 model.PaymentsRecord.RecordId = 1;
-                model.PaymentsConfig.Id = 1;
             }
         }
     }

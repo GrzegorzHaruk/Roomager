@@ -13,28 +13,12 @@ namespace Roomager.Web.Models.PaymentsModels
         public int RecordId { get; set; }
         
         [Required]
-        [Display(Name = "Energy Reading")]
-        public double EnergyReading { get; set; }
-
-        [Required]
-        [Display(Name = "Energy Usage")]
-        public double EnergyUsage { get; set; }
-
-        [Required]
         [Display(Name = "Energy Cost")]
         public decimal EnergyCost { get; set; }
 
         [Required]
-        [Display(Name = "Cold Water Reading")]
-        public double ColdWaterReading { get; set; }
-
-        [Required]
         [Display(Name = "Cold Water Cost")]
         public decimal ColdWaterCost { get; set; }
-
-        [Required]
-        [Display(Name = "Hot Water Reading")]
-        public double HotWaterReading { get; set; }
 
         [Required]
         [Display(Name = "Hot Water Cost")]

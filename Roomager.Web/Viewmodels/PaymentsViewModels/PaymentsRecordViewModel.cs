@@ -8,10 +8,9 @@ namespace Roomager.Web.Viewmodels.PaymentsViewModels
 {
     public class PaymentsRecordViewModel
     {
-        public PaymentsRecordViewModel(PaymentsRecord PaymentsRecord, PaymentsConfig PaymentsConfig)
+        public PaymentsRecordViewModel(PaymentsRecord PaymentsRecord)
         {
             this.PaymentsRecord = PaymentsRecord;
-            this.PaymentsConfig = PaymentsConfig;
         }
 
         public PaymentsRecordViewModel()
@@ -20,6 +19,5 @@ namespace Roomager.Web.Viewmodels.PaymentsViewModels
         }
 
         public PaymentsRecord PaymentsRecord { get; set; }
-        public PaymentsConfig PaymentsConfig { get; set; }
     }
 }
