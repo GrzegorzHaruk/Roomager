@@ -60,11 +60,7 @@
     <Folder Include="PublishProfile\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\WaterPaymentConfigTable.sql" />
-    <Build Include="Tables\EnergyPaymentConfigTable.sql" />
-    <Build Include="Tables\GasPaymentConfigTable.sql" />
     <Build Include="Tables\PaymentsRecordTable.sql" />
-    <Build Include="Tables\PaymentsConfigTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Tables\Roomager.Db.refactorlog" />

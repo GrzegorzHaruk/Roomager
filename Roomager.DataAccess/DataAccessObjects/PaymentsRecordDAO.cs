@@ -42,8 +42,8 @@ namespace Roomager.DataAccess.DataAccessObjects
         public int CreateRecord(PaymentsRecordDTO newRecord)
         {
             string sql = @"INSERT INTO PaymentsRecordTable
-                            (RecordId, EnergyReading, EnergyUsage, EnergyCost, ColdWaterReading, HotWaterReading, ColdWaterCost, HotWaterCost, GasCost, NumberOfTenants, TotalCost, CostPerPerson, AddDate, Comment)
-                                VALUES (@RecordId, @EnergyReading, @EnergyUsage, @EnergyCost, @ColdWaterReading, @HotWaterReading, @ColdWaterCost, @HotWaterCost, @GasCost, @NumberOfTenants, @TotalCost, @CostPerPerson, @AddDate, @Comment)";
+                            (RecordId, EnergyCost, ColdWaterCost, HotWaterCost, GasCost, NumberOfTenants, TotalCost, CostPerPerson, AddDate, Comment)
+                                VALUES (@RecordId, @EnergyCost, @ColdWaterCost, @HotWaterCost, @GasCost, @NumberOfTenants, @TotalCost, @CostPerPerson, @AddDate, @Comment)";
 
             return dataAccess.CreateData<PaymentsRecordDTO>(sql, newRecord);
         }
@@ -51,10 +51,10 @@ namespace Roomager.DataAccess.DataAccessObjects
         public int EditRecord(int id, PaymentsRecordDTO editedRecord)
         {
             string sql = @"UPDATE PaymentsRecordTable
-                            SET EnergyReading = @EnergyReading, @EnergyUsage = @EnergyUsage, @EnergyCost = @EnergyCost, 
-                                ColdWaterReading = @ColdWaterReading, HotWaterReading = @HotWaterReading, ColdWaterCost = @ColdWaterCost, HotWaterCost = @HotWaterCost, 
-                                    GasCost = @GasCost, NumberOfTenants = @NumberOfTenants, TotalCost = @TotalCost, CostPerPerson = @CostPerPerson, AddDate = @AddDate, Comment = @Comment
-                                        WHERE RecordId = @RecordId";
+                            SET @EnergyCost = @EnergyCost, ColdWaterCost = @ColdWaterCost, HotWaterCost = @HotWaterCost, 
+                                    GasCost = @GasCost, NumberOfTenants = @NumberOfTenants, TotalCost = @TotalCost, 
+                                        CostPerPerson = @CostPerPerson, AddDate = @AddDate, Comment = @Comment
+                                            WHERE RecordId = @RecordId";
 
             return dataAccess.EditData<PaymentsRecordDTO>(sql, editedRecord);
         }
