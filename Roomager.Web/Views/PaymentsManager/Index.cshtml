@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Roomager.Web.Models.PaymentsModels.PaymentsRecord> 
+﻿@model Roomager.Web.Viewmodels.PaymentsViewModels.PaymentsRecordViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -56,7 +56,7 @@
                         </thead>
                         
                         <tbody>
-                            @foreach (var record in Model)
+                            @foreach (var record in Model.Records)
                             {
                                 <tr>
                                     <td>

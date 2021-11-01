@@ -4,6 +4,7 @@ using Roomager.Data;
 using Roomager.Services.PaymentsServices;
 using Roomager.Web.Models.PaymentsModels;
 using Roomager.Web.Viewmodels.PaymentsViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,13 +23,28 @@ namespace Roomager.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int pageSize = 12, int pageNr = 1)
+        public IActionResult Index(int year)
         {
-            IEnumerable<PaymentsRecordDTO> recordDTO = recordService.GetRecords(pageSize, pageNr);
-            
-            IEnumerable<PaymentsRecord> records = mapper.Map<IEnumerable<PaymentsRecord>>(recordDTO);
+            int selectedYear = 0;
 
-            return View(records);
+            if (year == 0)
+            {
+                selectedYear = DateTime.Now.Year;
+            }
+
+            else
+            {
+                selectedYear = year;
+            }
+
+            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel
+            {
+                Records = mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecordsByYear(selectedYear))
+            };
+
+            //TempData["selectedYear"] = selectedYear;
+
+            return View(viewModel);
         }
 
         [HttpGet]

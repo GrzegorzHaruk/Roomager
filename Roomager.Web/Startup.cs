@@ -39,6 +39,11 @@ namespace Roomager.Web
             app.UseSession();
             app.UseMvc(routes => {
                 routes.MapRoute(
+                    name: "byYear",
+                    template: "{controller=Home}/{action=Index}/{year?}"
+                    );
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}"
                     );

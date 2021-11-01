@@ -34,6 +34,14 @@ namespace Roomager.DataAccess
             }
         }
 
+        public IEnumerable<T> GetDataByYear<T>(string sql, int year)
+        {
+            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
+            {
+                return connection.Query<T>(sql, new { year = year });
+            }
+        }
+
         public T GetSingleData<T>(string sql, int id)
         {
             using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))

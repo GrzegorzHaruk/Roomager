@@ -31,6 +31,14 @@ namespace Roomager.DataAccess.DataAccessObjects
             return dataAccess.GetData<PaymentsRecordDTO>(sql, pageSize, pageNr);
         }
 
+        public IEnumerable<PaymentsRecordDTO> GetRecordsByYear(int year)
+        {
+            string sql = @"SELECT * FROM PaymentsRecordTable
+                            WHERE year(AddDate) = @year";
+
+            return dataAccess.GetDataByYear<PaymentsRecordDTO>(sql, year);
+        }
+
         public PaymentsRecordDTO GetRecord(int id)
         {
             string sql = @"SELECT * FROM PaymentsRecordTable 

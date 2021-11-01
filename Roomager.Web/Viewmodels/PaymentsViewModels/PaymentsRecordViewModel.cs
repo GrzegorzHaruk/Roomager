@@ -15,8 +15,15 @@ namespace Roomager.Web.Viewmodels.PaymentsViewModels
 
         public PaymentsRecordViewModel()
         {
-
+            PagingYears = new List<int> { 2016, 2017, 2018, 2019, 2020, 2021 };
+            SelectedYear = PagingYears.Last();
         }
+
+        public List<int> PagingYears { get; set; }
+
+        public int SelectedYear { get; set; }
+
+        public IEnumerable<PaymentsRecord> Records { get; set; }
 
         public PaymentsRecord PaymentsRecord { get; set; }
     }
