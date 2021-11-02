@@ -39,25 +39,25 @@ namespace Roomager.Web.Controllers
         [HttpGet]
         public ViewResult CreateRecord()
         {
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(new PaymentsRecord());            
+            PaymentsRecord record = new PaymentsRecord();            
 
-            return View(viewModel);
+            return View(record);
         }
 
         [HttpPost]
-        public IActionResult CreateRecord(PaymentsRecordViewModel viewModel)
+        public IActionResult CreateRecord(PaymentsRecord record)
         {
             if (ModelState.IsValid)
             {
-                AssignId(viewModel);
+                AssignId(record);
 
-                PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
+                PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(record);
                 int rowsffected = recordService.CreateRecord(recordDTO);
 
                 return RedirectToAction("Index");
             }
 
-            return View(new PaymentsRecord());            
+            return View(new PaymentsRecord());
         }
 
         [HttpGet]
@@ -66,9 +66,7 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
-
-            return View(viewModel);
+            return View(record);
         }
 
         [HttpGet]
@@ -77,23 +75,21 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
-
-            return View(viewModel);
+            return View(record);
         }
 
         [HttpPost]
-        public IActionResult EditRecord(PaymentsRecordViewModel viewModel)
+        public IActionResult EditRecord(PaymentsRecord record)
         {
             if (ModelState.IsValid)
             {
-                PaymentsRecordDTO editedRecordDto = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
-                int rows = recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
+                PaymentsRecordDTO editedRecordDto = mapper.Map<PaymentsRecordDTO>(record);
+                int rowsAffected = recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
 
                 return RedirectToAction("Index");
             }
 
-            return View(new PaymentsRecordViewModel());            
+            return View();            
         }
 
         [HttpGet]
@@ -102,33 +98,31 @@ namespace Roomager.Web.Controllers
             PaymentsRecordDTO recordDto = recordService.GetRecord(id);
             PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
 
-            PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel(record);
-
-            return View(viewModel);
+            return View(record);
         }
 
         [HttpPost, ActionName("DeleteRecord")]
         public IActionResult ConfirmDeleteRecord(int id)
         {
-            recordService.DeleteRecord(id);
+            int rowsAffected = recordService.DeleteRecord(id);
 
             return RedirectToAction("Index");
         }
 
-        void AssignId(PaymentsRecordViewModel model)
+        void AssignId(PaymentsRecord model)
         {
-            PaymentsRecordViewModel newModel = model;
+            PaymentsRecord newModel = model;
             int recordsNr = 0;
             // gets current number of records and assigns it to a new record Id
 
             if (recordService.GetRecords().Count() >= 1)
             {
                 recordsNr = recordService.GetRecords().Max(x => x.RecordId);
-                model.PaymentsRecord.RecordId = recordsNr + 1;
+                model.RecordId = recordsNr + 1;
             }
             else
             {
-                model.PaymentsRecord.RecordId = 1;
+                model.RecordId = 1;
             }
         }
 

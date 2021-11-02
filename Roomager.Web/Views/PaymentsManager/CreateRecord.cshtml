@@ -1,4 +1,4 @@
-﻿@model Roomager.Web.Viewmodels.PaymentsViewModels.PaymentsRecordViewModel
+﻿@model Roomager.Web.Models.PaymentsModels.PaymentsRecord
 
 @{
     ViewData["Title"] = "CreateRecord";
@@ -16,50 +16,50 @@
                     <div class="panel-body">
 
                         <div class="form-group form-inline" hidden="hidden">
-                            <input asp-for="PaymentsRecord.RecordId" type="number" class="form-control" hidden="hidden">
+                            <input asp-for="RecordId" type="number" class="form-control" hidden="hidden">
                         </div>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.AddDate"></label>
-                            <input asp-for="PaymentsRecord.AddDate" type="date" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.AddDate" class="text-danger"></span>
-                        </div>
-
-                        <hr>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.EnergyCost"></label>
-                            <input asp-for="PaymentsRecord.EnergyCost" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.EnergyCost" class="text-danger"></span>
+                            <label asp-for="AddDate"></label>
+                            <input asp-for="AddDate" type="date" class="form-control">
+                            <span asp-validation-for="AddDate" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.ColdWaterCost"></label>
-                            <input asp-for="PaymentsRecord.ColdWaterCost" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.ColdWaterCost" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.HotWaterCost"></label>
-                            <input asp-for="PaymentsRecord.HotWaterCost" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.HotWaterCost" class="text-danger"></span>
+                            <label asp-for="EnergyCost"></label>
+                            <input asp-for="EnergyCost" type="number" class="form-control">
+                            <span asp-validation-for="EnergyCost" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.GasCost"></label>
-                            <input asp-for="PaymentsRecord.GasCost" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.GasCost" class="text-danger"></span>
+                            <label asp-for="ColdWaterCost"></label>
+                            <input asp-for="ColdWaterCost" type="number" class="form-control">
+                            <span asp-validation-for="ColdWaterCost" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="HotWaterCost"></label>
+                            <input asp-for="HotWaterCost" type="number" class="form-control">
+                            <span asp-validation-for="HotWaterCost" class="text-danger"></span>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="GasCost"></label>
+                            <input asp-for="GasCost" type="number" class="form-control">
+                            <span asp-validation-for="GasCost" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group ">
-                            <label asp-for="PaymentsRecord.NumberOfTenants"></label>
-                            <select asp-for="PaymentsRecord.NumberOfTenants" class="select-shape">
+                            <label asp-for="NumberOfTenants"></label>
+                            <select asp-for="NumberOfTenants" class="select-shape">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -69,22 +69,22 @@
                         </div>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.TotalCost"></label>
-                            <input asp-for="PaymentsRecord.TotalCost" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.TotalCost" class="text-danger"></span>
+                            <label asp-for="TotalCost"></label>
+                            <input asp-for="TotalCost" type="number" class="form-control">
+                            <span asp-validation-for="TotalCost" class="text-danger"></span>
                         </div>
 
                         <div class="form-group form-inline">
-                            <label asp-for="PaymentsRecord.CostPerPerson"></label>
-                            <input asp-for="PaymentsRecord.CostPerPerson" type="number" class="form-control">
-                            <span asp-validation-for="PaymentsRecord.CostPerPerson" class="text-danger"></span>
+                            <label asp-for="CostPerPerson"></label>
+                            <input asp-for="CostPerPerson" type="number" class="form-control">
+                            <span asp-validation-for="CostPerPerson" class="text-danger"></span>
                         </div>
 
                         <hr>
 
                         <div class="form-group ">
-                            <label asp-for="PaymentsRecord.Comment"></label>
-                            <textarea asp-for="PaymentsRecord.Comment" class="form-control"></textarea>
+                            <label asp-for="Comment"></label>
+                            <textarea asp-for="Comment" class="form-control"></textarea>
                         </div>
 
                         <hr>

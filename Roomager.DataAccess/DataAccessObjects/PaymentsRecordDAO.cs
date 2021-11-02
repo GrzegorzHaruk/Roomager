@@ -59,7 +59,7 @@ namespace Roomager.DataAccess.DataAccessObjects
         public int EditRecord(int id, PaymentsRecordDTO editedRecord)
         {
             string sql = @"UPDATE PaymentsRecordTable
-                            SET @EnergyCost = @EnergyCost, ColdWaterCost = @ColdWaterCost, HotWaterCost = @HotWaterCost, 
+                            SET EnergyCost = @EnergyCost, ColdWaterCost = @ColdWaterCost, HotWaterCost = @HotWaterCost, 
                                     GasCost = @GasCost, NumberOfTenants = @NumberOfTenants, TotalCost = @TotalCost, 
                                         CostPerPerson = @CostPerPerson, AddDate = @AddDate, Comment = @Comment
                                             WHERE RecordId = @RecordId";

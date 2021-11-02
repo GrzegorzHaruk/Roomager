@@ -1,4 +1,4 @@
-﻿@model Roomager.Web.Viewmodels.PaymentsViewModels.PaymentsRecordViewModel
+﻿@model Roomager.Web.Models.PaymentsModels.PaymentsRecord
 
 @{
     ViewData["Title"] = "RecordDetails";
@@ -17,56 +17,56 @@
                 <div class="panel-body">
 
                     <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.AddDate"></label>
-                        <input asp-for="PaymentsRecord.AddDate" readonly="readonly" type="date" class="form-control">
+                        <label asp-for="AddDate"></label>
+                        <input asp-for="AddDate" readonly="readonly" type="date" class="form-control">
                     </div>
 
                     <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.EnergyCost"></label>
-                        <input asp-for="PaymentsRecord.EnergyCost" readonly="readonly" type="number" class="form-control">
+                        <label asp-for="EnergyCost"></label>
+                        <input asp-for="EnergyCost" readonly="readonly" type="number" class="form-control">
                     </div>
 
                     <hr>
 
                     <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.ColdWaterCost"></label>
-                        <input asp-for="PaymentsRecord.ColdWaterCost" readonly="readonly" type="number" class="form-control">
+                        <label asp-for="ColdWaterCost"></label>
+                        <input asp-for="ColdWaterCost" readonly="readonly" type="number" class="form-control">
                     </div>
 
                     <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.HotWaterCost"></label>
-                        <input asp-for="PaymentsRecord.HotWaterCost" readonly="readonly" type="number" class="form-control">
+                        <label asp-for="HotWaterCost"></label>
+                        <input asp-for="HotWaterCost" readonly="readonly" type="number" class="form-control">
                     </div>
 
                     <hr>
 
                     <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.GasCost"></label>
-                        <input asp-for="PaymentsRecord.GasCost" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <hr>
-
-                    <div class="form-group ">
-                        <label asp-for="PaymentsRecord.NumberOfTenants"></label>
-                        <input asp-for="PaymentsRecord.NumberOfTenants" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.TotalCost"></label>
-                        <input asp-for="PaymentsRecord.TotalCost" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label asp-for="PaymentsRecord.CostPerPerson"></label>
-                        <input asp-for="PaymentsRecord.CostPerPerson" readonly="readonly" type="number" class="form-control">
+                        <label asp-for="GasCost"></label>
+                        <input asp-for="GasCost" readonly="readonly" type="number" class="form-control">
                     </div>
 
                     <hr>
 
                     <div class="form-group ">
-                        <label asp-for="PaymentsRecord.Comment"></label>
-                        <textarea asp-for="PaymentsRecord.Comment" readonly="readonly" class="form-control"></textarea>
+                        <label asp-for="NumberOfTenants"></label>
+                        <input asp-for="NumberOfTenants" readonly="readonly" type="number" class="form-control">
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label asp-for="TotalCost"></label>
+                        <input asp-for="TotalCost" readonly="readonly" type="number" class="form-control">
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label asp-for="CostPerPerson"></label>
+                        <input asp-for="CostPerPerson" readonly="readonly" type="number" class="form-control">
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group ">
+                        <label asp-for="Comment"></label>
+                        <textarea asp-for="Comment" readonly="readonly" class="form-control"></textarea>
                     </div>
 
                     <hr>
