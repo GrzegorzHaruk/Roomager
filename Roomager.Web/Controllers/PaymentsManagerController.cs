@@ -17,32 +17,21 @@ namespace Roomager.Web.Controllers
 
         public PaymentsManagerController(IPaymentsRecordService recordService, IMapper mapper)
         {
-            this.recordService = recordService;
-            
+            this.recordService = recordService;            
             this.mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Index(int year)
         {
-            int selectedYear = 0;
-
-            if (year == 0)
-            {
-                selectedYear = DateTime.Now.Year;
-            }
-
-            else
-            {
-                selectedYear = year;
-            }
-
+            int selectedYear = SelectRecordYear(year);
+            
             PaymentsRecordViewModel viewModel = new PaymentsRecordViewModel
             {
                 Records = mapper.Map<IEnumerable<PaymentsRecord>>(recordService.GetRecordsByYear(selectedYear))
             };
 
-            //TempData["selectedYear"] = selectedYear;
+            TempData["selectedYear"] = selectedYear;
 
             return View(viewModel);
         }
@@ -99,7 +88,7 @@ namespace Roomager.Web.Controllers
             if (ModelState.IsValid)
             {
                 PaymentsRecordDTO editedRecordDto = mapper.Map<PaymentsRecordDTO>(viewModel.PaymentsRecord);
-                recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
+                int rows = recordService.EditRecord(editedRecordDto.RecordId, editedRecordDto);
 
                 return RedirectToAction("Index");
             }
@@ -141,6 +130,28 @@ namespace Roomager.Web.Controllers
             {
                 model.PaymentsRecord.RecordId = 1;
             }
+        }
+
+        int SelectRecordYear(int year)
+        {
+            int selectedYear = 0;
+
+            if (TempData["selectedYear"] != null && (int)TempData["selectedYear"] != year && year == 0)
+            {
+                selectedYear = (int)TempData["selectedYear"];
+            }
+
+            else if (TempData["selectedYear"] != null && (int)TempData["selectedYear"] != year)
+            {
+                selectedYear = year;
+            }
+
+            else if (year == 0)
+            {
+                selectedYear = DateTime.Now.Year;
+            }
+
+            return selectedYear;
         }
     }
 }
