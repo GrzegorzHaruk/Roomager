@@ -10,6 +10,7 @@ namespace Roomager.DataAccess.DataAccessObjects
         IEnumerable<PaymentsRecordDTO> GetRecords();
         IEnumerable<PaymentsRecordDTO> GetRecords(int pageSize, int pageNr);
         IEnumerable<PaymentsRecordDTO> GetRecordsByYear(int year);
+        IEnumerable<int> GetRecordYears();
         PaymentsRecordDTO GetRecord(int id);
         int CreateRecord(PaymentsRecordDTO newRecord);
         int EditRecord(int id, PaymentsRecordDTO editedRecord);

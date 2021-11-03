@@ -52,6 +52,18 @@ namespace Roomager.Services.PaymentsServices
             return records;
         }
 
+        public IEnumerable<int> GetRecordYears()
+        {
+            IEnumerable<int> recordYears = paymentsRecordDAO.GetRecordYears();
+
+            if (recordYears == null)
+            {
+                recordYears = new List<int>();
+            }
+
+            return recordYears;
+        }
+
         public PaymentsRecordDTO GetRecord(int id)
         {
             PaymentsRecordDTO record = paymentsRecordDAO.GetRecord(id);
