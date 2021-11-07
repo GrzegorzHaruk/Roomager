@@ -10,17 +10,7 @@
         <div class="col-sm-2">
             <div class="panel panel-default">
                 <div class="panel-heading" style="text-align: center">
-                    <h4><b>Payment Manager</b></h4>
-                </div>
-
-                <div class="panel-body">
-                    <p style="display: inline">Select Year:</p>
-                    <select class="select-shape">
-                        <option>2010</option>
-                        <option>2010</option>
-                        <option>2010</option>
-                        <option>2010</option>
-                    </select>
+                    <h4><b>Payments Manager</b></h4>
                 </div>
 
                 <div class="panel-body">
@@ -97,7 +87,7 @@
                                         @record.RecordId
                                     </td>
                                     <td>
-                                        @record.AddDate.ToString("MM.dd.yyyy")
+                                        @record.AddDate.ToString("dd.MM.yyyy")
                                     </td>
                                     <td>
                                         @record.EnergyCost
