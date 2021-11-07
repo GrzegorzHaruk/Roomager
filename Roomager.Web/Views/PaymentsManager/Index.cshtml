@@ -36,13 +36,47 @@
         <div class="col-sm-10">
             <div class="panel panel-default">
                 <div class="panel-body">
+
+                    <nav>
+                        <ul class="pagination">
+
+                            <li class="page-item @(Model.PagingInfo.DisplayPrev? "" : "disabled")">
+                                <a asp-action="Index"
+                                   asp-route-year="@Model.PagingInfo.GetPrevPage()">Prev</a>
+                            </li>
+
+                            <li class="page-item @(Model.PagingInfo.DisplayFirst? "" : "disabled")">
+                                <a asp-action="Index"
+                                   asp-route-year="@Model.PagingInfo.PagingYears.First()">First</a>
+                            </li>
+
+                            @foreach (var year in Model.PagingInfo.PagingYears)
+                            {
+                                <li class="page-item @(year == Model.PagingInfo.CurrentPage ? "active" : "")">
+                                    <a asp-action="Index" asp-route-year="@year">@year</a>
+                                </li>
+                            }
+
+                            <li class="page-item @(Model.PagingInfo.DisplayLast? "" : "disabled")">
+                                <a asp-action="Index"
+                                   asp-route-year="@Model.PagingInfo.PagingYears.Last()">Last</a>
+                            </li>
+
+                            <li class="page-item @(Model.PagingInfo.DisplayNext? "" : "disabled")">
+                                <a asp-action="Index"
+                                   asp-route-year="@Model.PagingInfo.GetNextPage()">Next</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+
                     <table class="table table-striped table-hover" style="font-size: 13px">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Date</th>                                
-                                <th>Energy Cost</th>                                
-                                <th>Cold Water Cost</th>                                
+                                <th>Date</th>
+                                <th>Energy Cost</th>
+                                <th>Cold Water Cost</th>
                                 <th>Hot Water Cost</th>
                                 <th>Gas Cost</th>
                                 <th>Total cost</th>
@@ -54,7 +88,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             @foreach (var record in Model.Records)
                             {
