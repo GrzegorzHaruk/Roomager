@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Roomager.Data;
 using Roomager.Services.PaymentsServices;
+using Roomager.Web.Infrastructure;
 using Roomager.Web.Models.PaymentsModels;
 using Roomager.Web.Viewmodels.PaymentsViewModels;
 using System;
@@ -13,11 +14,13 @@ namespace Roomager.Web.Controllers
     public class PaymentsManagerController : Controller
     {
         private IPaymentsRecordService recordService;
+        private PaymentCalculatorService calculatorService;
         private IMapper mapper;
 
         public PaymentsManagerController(IPaymentsRecordService recordService, IMapper mapper)
         {
-            this.recordService = recordService;            
+            this.recordService = recordService;
+            this.calculatorService = new PaymentCalculatorService();
             this.mapper = mapper;
         }
 
@@ -44,7 +47,16 @@ namespace Roomager.Web.Controllers
         [HttpGet]
         public ViewResult CreateRecord()
         {
-            PaymentsRecord record = new PaymentsRecord();            
+            PaymentsRecord record;
+
+            if (TempData.ContainsKey("calculatedRecord") && TempData["calculatedRecord"] != null)
+            {
+                record = TempData.Get<PaymentsRecord>("calculatedRecord");
+            }
+            else
+            {
+                record = new PaymentsRecord();
+            }
 
             return View(record);
         }
@@ -65,6 +77,24 @@ namespace Roomager.Web.Controllers
             }
 
             return View(new PaymentsRecord());
+        }
+        
+        [HttpPost]
+        public IActionResult CalculatePayment(PaymentsRecord record)
+        {
+            record.TotalCost = calculatorService.CalculateTotalPayment(
+                record.EnergyCost,
+                record.ColdWaterCost,
+                record.HotWaterCost,
+                record.GasCost
+                );
+            record.CostPerPerson = calculatorService.CalculatePaymentPerPerson(
+                record.NumberOfTenants,
+                record.TotalCost);
+
+            TempData.Put<PaymentsRecord>("calculatedRecord", record);
+
+            return RedirectToAction("CreateRecord", record);
         }
 
         [HttpGet]

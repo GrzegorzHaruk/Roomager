@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <form asp-action="CreateRecord" method="post">
+    <form method="post">
         <div class="row">
 
             <div class="col-sm-4">
@@ -90,9 +90,9 @@
                         <hr>
 
                         <div class="form-group ">
-                            <a class="btn btn-default">Calculate</a>
+                            <input asp-action="CalculatePayment" asp-controller="PaymentsManager" type="submit" value="Calculate" class="btn btn-default">
                             <button type="reset" class="btn btn-default">Clear</button>
-                            <input type="submit" value="Save" class="btn btn-default" />
+                            <input asp-action="CreateRecord" asp-controller="PaymentsManager" type="submit" value="Save" class="btn btn-default" />
                             <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger">Cancel</a>
                         </div>
                     </div>
