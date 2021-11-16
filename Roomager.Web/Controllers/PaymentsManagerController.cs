@@ -82,19 +82,13 @@ namespace Roomager.Web.Controllers
         [HttpPost]
         public IActionResult CalculatePayment(PaymentsRecord record)
         {
-            record.TotalCost = calculatorService.CalculateTotalPayment(
-                record.EnergyCost,
-                record.ColdWaterCost,
-                record.HotWaterCost,
-                record.GasCost
-                );
-            record.CostPerPerson = calculatorService.CalculatePaymentPerPerson(
-                record.NumberOfTenants,
-                record.TotalCost);
+            var calculatedDTO = calculatorService.GetCalculatedRecord(mapper.Map<PaymentsRecordDTO>(record));
 
-            TempData.Put<PaymentsRecord>("calculatedRecord", record);
+            var calculated = mapper.Map<PaymentsRecord>(calculatedDTO);
 
-            return RedirectToAction("CreateRecord", record);
+            TempData.Put<PaymentsRecord>("calculatedRecord", calculated);
+
+            return RedirectToAction("CreateRecord", calculated);
         }
 
         [HttpGet]
