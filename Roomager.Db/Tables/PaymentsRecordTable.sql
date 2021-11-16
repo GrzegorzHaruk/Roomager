@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[PaymentsRecordTable] (
-    [RecordId]         INT             NOT NULL,
+    [RecordId]         INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     [EnergyCost]       DECIMAL (18, 2) NOT NULL,
     [ColdWaterCost]    DECIMAL (18, 2) NOT NULL,
     [HotWaterCost]     DECIMAL (18, 2) NOT NULL,
@@ -8,7 +8,6 @@
     [TotalCost]        DECIMAL (18, 2) NOT NULL,
     [CostPerPerson]    DECIMAL (18, 2) NOT NULL,
     [AddDate]          DATETIME        NOT NULL,
-    [Comment]          VARCHAR (100)   NULL,
-    PRIMARY KEY CLUSTERED ([RecordId] ASC)
+    [Comment]          VARCHAR (100)   NULL
 );
 

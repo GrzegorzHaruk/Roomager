@@ -59,8 +59,8 @@ namespace Roomager.DataAccess.DataAccessObjects
         public int CreateRecord(PaymentsRecordDTO newRecord)
         {
             string sql = @"INSERT INTO PaymentsRecordTable
-                            (RecordId, EnergyCost, ColdWaterCost, HotWaterCost, GasCost, NumberOfTenants, TotalCost, CostPerPerson, AddDate, Comment)
-                                VALUES (@RecordId, @EnergyCost, @ColdWaterCost, @HotWaterCost, @GasCost, @NumberOfTenants, @TotalCost, @CostPerPerson, @AddDate, @Comment)";
+                            (EnergyCost, ColdWaterCost, HotWaterCost, GasCost, NumberOfTenants, TotalCost, CostPerPerson, AddDate, Comment)
+                                VALUES (@EnergyCost, @ColdWaterCost, @HotWaterCost, @GasCost, @NumberOfTenants, @TotalCost, @CostPerPerson, @AddDate, @Comment)";
 
             return dataAccess.CreateData<PaymentsRecordDTO>(sql, newRecord);
         }

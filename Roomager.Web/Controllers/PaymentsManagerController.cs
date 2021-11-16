@@ -66,8 +66,6 @@ namespace Roomager.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                AssignId(record);
-
                 PaymentsRecordDTO recordDTO = mapper.Map<PaymentsRecordDTO>(record);
                 int rowsffected = recordService.CreateRecord(recordDTO);
 
@@ -138,23 +136,6 @@ namespace Roomager.Web.Controllers
             int rowsAffected = recordService.DeleteRecord(id);
 
             return RedirectToAction("Index");
-        }
-
-        void AssignId(PaymentsRecord model)
-        {
-            PaymentsRecord newModel = model;
-            int recordsNr = 0;
-            // gets current number of records and assigns it to a new record Id
-
-            if (recordService.GetRecords().Count() >= 1)
-            {
-                recordsNr = recordService.GetRecords().Max(x => x.RecordId);
-                model.RecordId = recordsNr + 1;
-            }
-            else
-            {
-                model.RecordId = 1;
-            }
         }
 
         int SelectRecordYear(int year)
