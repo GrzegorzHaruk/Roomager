@@ -93,11 +93,7 @@ namespace Roomager.Tests.PaymentsServicesTests
                 var newRecord = new PaymentsRecordDTO
                 {
                     RecordId = 100,
-                    EnergyReading = 555,
-                    EnergyUsage = 666,
                     EnergyCost = 888,
-                    HotWaterReading = 111,
-                    ColdWaterReading = 111,
                     ColdWaterCost = 100,
                     HotWaterCost = 100,
                     GasCost = 100,
@@ -248,23 +244,23 @@ namespace Roomager.Tests.PaymentsServicesTests
             {
                 new PaymentsRecordDTO
                 {
-                    RecordId = 1, EnergyReading = 0, EnergyUsage = 0, EnergyCost = 0, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2015,01,01), Comment = ""
+                    RecordId = 1, EnergyCost = 0, ColdWaterCost = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2015,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 2, EnergyReading = 15, EnergyUsage = 15, EnergyCost = 30, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2016,01,01), Comment = ""
+                    RecordId = 2, EnergyCost = 30, ColdWaterCost = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2016,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 3, EnergyReading = 32, EnergyUsage = 12, EnergyCost = 32, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2017,01,01), Comment = ""
+                    RecordId = 3, EnergyCost = 32, ColdWaterCost = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2017,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 4, EnergyReading = 49, EnergyUsage = 13, EnergyCost = 35, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2018,01,01), Comment = ""
+                    RecordId = 4, EnergyCost = 35, ColdWaterCost = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2018,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 5, EnergyReading = 65, EnergyUsage = 17, EnergyCost = 37, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2019,01,01), Comment = ""
+                    RecordId = 5, EnergyCost = 37, ColdWaterCost = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2019,01,01), Comment = ""
                 },
             };
 
