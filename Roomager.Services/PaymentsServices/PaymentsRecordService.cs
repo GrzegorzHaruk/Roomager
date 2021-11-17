@@ -16,30 +16,6 @@ namespace Roomager.Services.PaymentsServices
             this.paymentsRecordDAO = paymentsRecordDAO;
         }
 
-        public IEnumerable<PaymentsRecordDTO> GetRecords()
-        {
-            IEnumerable<PaymentsRecordDTO> records = paymentsRecordDAO.GetRecords();
-
-            if (records == null)
-            {
-                records = new List<PaymentsRecordDTO>();
-            }
-
-            return records;
-        }
-
-        public IEnumerable<PaymentsRecordDTO> GetRecords(int pageSize, int pageNr)
-        {
-            IEnumerable<PaymentsRecordDTO> records = paymentsRecordDAO.GetRecords(pageSize, pageNr);
-
-            if (records == null)
-            {
-                records = new List<PaymentsRecordDTO>();
-            }
-
-            return records;
-        }
-
         public IEnumerable<PaymentsRecordDTO> GetRecordsByYear(int year)
         {
             IEnumerable<PaymentsRecordDTO> records = paymentsRecordDAO.GetRecordsByYear(year);

@@ -26,14 +26,6 @@ namespace Roomager.DataAccess
             }
         }
 
-        public IEnumerable<T> GetData<T>(string sql, int pageSize, int pageNr)
-        {
-            using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))
-            {
-                return connection.Query<T>(sql, new { pageSize = pageSize, pageNr = pageNr });
-            }
-        }
-
         public IEnumerable<T> GetDataByYear<T>(string sql, int year)
         {
             using (IDbConnection connection = new SqlConnection(configuration.GetConnectionString("RoomagerDb")))

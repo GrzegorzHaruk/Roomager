@@ -13,77 +13,41 @@ namespace Roomager.Tests.PaymentsServicesTests
     public class PaymentsRecordServiceTests
     {
         [Fact]
-        public void GetRecords_GetAllRecords_Success()
+        public void GetRecordsByYear_Success()
         {
             using (var mock = AutoMock.GetLoose())
             {
                 mock.Mock<IPaymentsRecordDAO>()
-                    .Setup(x => x.GetRecords())
-                    .Returns(GetSampleRecords());
+                    .Setup(x => x.GetRecordsByYear(2018))
+                    .Returns(sampleRecords.Where(x => x.AddDate.Year == 2018));
 
                 var service = mock.Create<PaymentsRecordService>();
 
-                var expected = GetSampleRecords().ToList();
+                var expected = sampleRecords.Where(x => x.AddDate.Year == 2018).ToList();
 
-                var actual = service.GetRecords().ToList();
+                var actual = service.GetRecordsByYear(2018).ToList();
 
-                Assert.True(actual != null);
-
-                Assert.Equal(expected.Count, actual.Count);
-
-                for (int i = 0; i < expected.Count; i++)
-                {
-                    Assert.Equal(expected[i].RecordId, actual[i].RecordId);
-                }
+                Assert.True(actual.Count == 1);
+                Assert.True(expected.Count == actual.Count);
             }
         }
 
         [Fact]
-        public void GetRecords_GetAllRecords_GetEmptyList()
+        public void GetRecordsByYear_Fail_GetNewEmptyRecord()
         {
             using (var mock = AutoMock.GetLoose())
             {
                 mock.Mock<IPaymentsRecordDAO>()
-                    .Setup(x => x.GetRecords())
-                    .Returns(new List<PaymentsRecordDTO>());
+                    .Setup(x => x.GetRecordsByYear(2018))
+                    .Returns(sampleRecords.Where(x => x.AddDate.Year == 2018));
 
                 var service = mock.Create<PaymentsRecordService>();
 
-                var expected = new List<PaymentsRecordDTO>();
-                var actual = service.GetRecords().ToList();
+                var expected = sampleRecords.Where(x => x.AddDate.Year == 2025).ToList();
 
-                Assert.Equal(expected.Count, actual.Count);
+                var actual = service.GetRecordsByYear(2025).ToList();
+
                 Assert.True(actual.Count == 0);
-            }        
-        }
-
-        [Theory]
-        [InlineData(1,2)]
-        [InlineData(2,2)]
-        [InlineData(3,2)]
-        [InlineData(1,5)]
-        [InlineData(2,5)]
-        [InlineData(2,6)]
-        public void GetRecords_GetRecordsPaged_Success(int pageNr, int pageSize)
-        {
-            using (var mock = AutoMock.GetLoose())
-            {
-                mock.Mock<IPaymentsRecordDAO>()
-                    .Setup(x => x.GetRecords(pageSize, pageNr))
-                    .Returns(GetSampleRecords(pageSize, pageNr));
-
-                var service = mock.Create<PaymentsRecordService>();
-
-                var expected = GetSampleRecords(pageSize, pageNr).ToList();
-
-                var actual = service.GetRecords(pageSize, pageNr).ToList();
-
-                Assert.Equal(expected.Count, actual.Count);
-
-                for (int i = 0; i < expected.Count; i++)
-                {
-                    Assert.Equal(expected[i].RecordId, actual[i].RecordId);
-                }
             }
         }
 
@@ -126,7 +90,23 @@ namespace Roomager.Tests.PaymentsServicesTests
         {
             using (var mock = AutoMock.GetLoose())
             {
-                var newRecord = GetSampleRecord();
+                var newRecord = new PaymentsRecordDTO
+                {
+                    RecordId = 100,
+                    EnergyReading = 555,
+                    EnergyUsage = 666,
+                    EnergyCost = 888,
+                    HotWaterReading = 111,
+                    ColdWaterReading = 111,
+                    ColdWaterCost = 100,
+                    HotWaterCost = 100,
+                    GasCost = 100,
+                    NumberOfTenants = 5,
+                    TotalCost = 500,
+                    CostPerPerson = 100,
+                    AddDate = DateTime.Now,
+                    Comment = ""
+                };
 
                 mock.Mock<IPaymentsRecordDAO>()
                     .Setup(x => x.CreateRecord(newRecord))
@@ -181,7 +161,7 @@ namespace Roomager.Tests.PaymentsServicesTests
         {
             using (var mock = AutoMock.GetLoose())
             {
-                var record = GetSampleRecords().FirstOrDefault();
+                var record = sampleRecords.FirstOrDefault();
 
                 mock.Mock<IPaymentsRecordDAO>()
                     .Setup(x => x.EditRecord(record.RecordId, record))
@@ -240,62 +220,53 @@ namespace Roomager.Tests.PaymentsServicesTests
             }
         }
 
+        [Fact]
+        public void GetRecordYears_Success()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<IPaymentsRecordDAO>()
+                    .Setup(x => x.GetRecordYears())
+                    .Returns(new List<int> {2015,2016,2017,2018});
+
+                var service = mock.Create<PaymentsRecordService>();
+
+                var expected = new List<int> { 2015, 2016, 2017, 2018 };
+
+                var actual = service.GetRecordYears().ToList();
+
+                Assert.True(expected.Count == actual.Count);
+
+                for (int i = 0; i < expected.Count; i++)
+                {
+                    Assert.True(expected[i] == actual[i]);
+                }
+            }
+        }
+
         private IEnumerable<PaymentsRecordDTO> sampleRecords = new List<PaymentsRecordDTO>
             {
                 new PaymentsRecordDTO
                 {
-                    RecordId = 1, EnergyReading = 0, EnergyUsage = 0, EnergyCost = 0, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                    RecordId = 1, EnergyReading = 0, EnergyUsage = 0, EnergyCost = 0, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2015,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 2, EnergyReading = 15, EnergyUsage = 15, EnergyCost = 30, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                    RecordId = 2, EnergyReading = 15, EnergyUsage = 15, EnergyCost = 30, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2016,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 3, EnergyReading = 32, EnergyUsage = 12, EnergyCost = 32, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                    RecordId = 3, EnergyReading = 32, EnergyUsage = 12, EnergyCost = 32, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2017,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 4, EnergyReading = 49, EnergyUsage = 13, EnergyCost = 35, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                    RecordId = 4, EnergyReading = 49, EnergyUsage = 13, EnergyCost = 35, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2018,01,01), Comment = ""
                 },
                 new PaymentsRecordDTO
                 {
-                    RecordId = 5, EnergyReading = 65, EnergyUsage = 17, EnergyCost = 37, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = DateTime.Now, Comment = ""
+                    RecordId = 5, EnergyReading = 65, EnergyUsage = 17, EnergyCost = 37, ColdWaterReading = 0, ColdWaterCost = 0, HotWaterReading = 0, HotWaterCost = 0, GasCost = 0, NumberOfTenants = 0, TotalCost = 0, CostPerPerson = 0, AddDate = new DateTime(2019,01,01), Comment = ""
                 },
             };
-
-        private IEnumerable<PaymentsRecordDTO> GetSampleRecords()
-        {
-            return sampleRecords;
-        }
-
-        private IEnumerable<PaymentsRecordDTO> GetSampleRecords(int pageSize, int pageNr)
-        {
-            return sampleRecords.Skip((pageNr - 1) * pageSize).Take(pageSize);
-        }
-
-        private PaymentsRecordDTO GetSampleRecord()
-        {
-            PaymentsRecordDTO record = new PaymentsRecordDTO
-            {
-                RecordId = 100,
-                EnergyReading = 555,
-                EnergyUsage = 666,
-                EnergyCost = 888,
-                HotWaterReading = 111,
-                ColdWaterReading = 111,
-                ColdWaterCost = 100,
-                HotWaterCost = 100,
-                GasCost = 100,
-                NumberOfTenants = 5,
-                TotalCost = 500,
-                CostPerPerson = 100,
-                AddDate = DateTime.Now,
-                Comment = ""
-            };
-
-            return record;
-        }
 
         private PaymentsRecordDTO GetInvalidSampleRecord()
         {

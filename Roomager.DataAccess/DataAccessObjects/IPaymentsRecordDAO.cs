@@ -7,8 +7,6 @@ namespace Roomager.DataAccess.DataAccessObjects
 {
     public interface IPaymentsRecordDAO
     {
-        IEnumerable<PaymentsRecordDTO> GetRecords();
-        IEnumerable<PaymentsRecordDTO> GetRecords(int pageSize, int pageNr);
         IEnumerable<PaymentsRecordDTO> GetRecordsByYear(int year);
         IEnumerable<int> GetRecordYears();
         PaymentsRecordDTO GetRecord(int id);
