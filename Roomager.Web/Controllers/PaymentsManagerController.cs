@@ -89,6 +89,18 @@ namespace Roomager.Web.Controllers
             return RedirectToAction("CreateRecord", calculated);
         }
 
+        [HttpPost]
+        public IActionResult RecalculatePayment(PaymentsRecord record)
+        {
+            var calculatedDTO = calculatorService.GetCalculatedRecord(mapper.Map<PaymentsRecordDTO>(record));
+
+            var calculated = mapper.Map<PaymentsRecord>(calculatedDTO);
+
+            TempData.Put<PaymentsRecord>("recalculatedRecord", calculated);
+
+            return RedirectToAction("EditRecord", calculated);
+        }
+
         [HttpGet]
         public ViewResult RecordDetails(int id)
         {
@@ -101,10 +113,19 @@ namespace Roomager.Web.Controllers
         [HttpGet]
         public ViewResult EditRecord(int id)
         {
-            PaymentsRecordDTO recordDto = recordService.GetRecord(id);
-            PaymentsRecord record = mapper.Map<PaymentsRecord>(recordDto);
+            PaymentsRecord editedRecord;
 
-            return View(record);
+            if (TempData.ContainsKey("recalculatedRecord") && TempData["recalculatedRecord"] != null)
+            {
+                editedRecord = TempData.Get<PaymentsRecord>("recalculatedRecord");
+                return View("EditRecord", editedRecord);
+            }
+            else
+            {
+                PaymentsRecordDTO recordDto = recordService.GetRecord(id);
+                editedRecord = mapper.Map<PaymentsRecord>(recordDto);
+                return View("EditRecord", editedRecord);
+            }
         }
 
         [HttpPost]

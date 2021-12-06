@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <form asp-action="EditRecord" method="post">
+    <form method="post">
         <div class="row">
 
             <div class="panel panel-default">
@@ -82,8 +82,9 @@
                             </div>
 
                             <div class="form-group" style="margin-top: 40px">
-                                <a class="btn btn-default">Recalculate</a>                                
-                                <input type="submit" value="Save" class="btn btn-default">
+                                <input type="submit" asp-action="RecalculatePayment" asp-controller="PaymentsManager" value="Recalculate" class="btn btn-default"/>
+                                                                
+                                <input type="submit" asp-action="EditRecord" asp-controller="PaymentsManager" value="Save" class="btn btn-default">
                                 <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-danger">Cancel</a>
                             </div>
 
