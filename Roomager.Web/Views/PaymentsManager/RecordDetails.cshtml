@@ -7,74 +7,82 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-sm-4">
-            <div class="panel panel-default">
 
-                <div class="panel-heading">
-                    <h4><b>Record Details</b></h4>                    
-                </div>
+        <div class="panel panel-default">
 
-                <div class="panel-body">
+            <div class="panel-heading">
+                <h4><b>Record Details</b></h4>
+            </div>
 
-                    <div class="form-group form-inline">
-                        <label asp-for="AddDate"></label>
-                        <input asp-for="AddDate" readonly="readonly" type="date" class="form-control">
-                    </div>
+            <div class="panel-body">
 
-                    <div class="form-group form-inline">
-                        <label asp-for="EnergyCost"></label>
-                        <input asp-for="EnergyCost" readonly="readonly" type="number" class="form-control">
-                    </div>
+                <div class="panel panel-default col-sm-4" style="height: 240px">
+                    <div class="panel-body">
 
-                    <hr>
+                        <div class="form-group form-inline">
+                            <label asp-for="AddDate"></label>
+                            <input asp-for="AddDate" readonly="readonly" type="date" class="form-control pull-right">
+                        </div>
 
-                    <div class="form-group form-inline">
-                        <label asp-for="ColdWaterCost"></label>
-                        <input asp-for="ColdWaterCost" readonly="readonly" type="number" class="form-control">
-                    </div>
+                        <div class="form-group form-inline">
+                            <label asp-for="EnergyCost"></label>
+                            <input asp-for="EnergyCost" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
 
-                    <div class="form-group form-inline">
-                        <label asp-for="HotWaterCost"></label>
-                        <input asp-for="HotWaterCost" readonly="readonly" type="number" class="form-control">
-                    </div>
+                        <div class="form-group form-inline">
+                            <label asp-for="ColdWaterCost"></label>
+                            <input asp-for="ColdWaterCost" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
 
-                    <hr>
+                        <div class="form-group form-inline">
+                            <label asp-for="HotWaterCost"></label>
+                            <input asp-for="HotWaterCost" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
 
-                    <div class="form-group form-inline">
-                        <label asp-for="GasCost"></label>
-                        <input asp-for="GasCost" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <hr>
-
-                    <div class="form-group ">
-                        <label asp-for="NumberOfTenants"></label>
-                        <input asp-for="NumberOfTenants" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label asp-for="TotalCost"></label>
-                        <input asp-for="TotalCost" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <div class="form-group form-inline">
-                        <label asp-for="CostPerPerson"></label>
-                        <input asp-for="CostPerPerson" readonly="readonly" type="number" class="form-control">
-                    </div>
-
-                    <hr>
-
-                    <div class="form-group ">
-                        <label asp-for="Comment"></label>
-                        <textarea asp-for="Comment" readonly="readonly" class="form-control"></textarea>
-                    </div>
-
-                    <hr>
-                    <div class="form-group ">
-                        <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-default">Back</a>
+                        <div class="form-group form-inline">
+                            <label asp-for="GasCost"></label>
+                            <input asp-for="GasCost" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>                        
                     </div>
                 </div>
+
+                <div class="panel panel-default col-sm-4" style="height: 240px">
+                    <div class="panel-body">
+
+                        <div class="form-group ">
+                            <label asp-for="NumberOfTenants"></label>
+                            <input asp-for="NumberOfTenants" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="TotalCost"></label>
+                            <input asp-for="TotalCost" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
+
+                        <div class="form-group form-inline">
+                            <label asp-for="CostPerPerson"></label>
+                            <input asp-for="CostPerPerson" readonly="readonly" type="number" class="form-control pull-right">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default col-sm-4" style="height: 240px">
+                    <div class="panel-body">
+
+                        <div class="form-group ">
+                            <label asp-for="Comment"></label>
+                            <textarea asp-for="Comment" readonly="readonly" class="form-control"></textarea>
+                        </div>
+
+                        <hr>
+                        <div class="form-group ">
+                            <a asp-action="Index" asp-controller="PaymentsManager" class="btn btn-default">Back</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </div>
 </div>

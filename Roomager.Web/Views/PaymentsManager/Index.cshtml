@@ -63,7 +63,6 @@
                     <table class="table table-striped table-hover" style="font-size: 13px">
                         <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Date</th>
                                 <th>Energy Cost</th>
                                 <th>Cold Water Cost</th>
@@ -83,9 +82,6 @@
                             @foreach (var record in Model.Records)
                             {
                                 <tr>
-                                    <td>
-                                        @record.RecordId
-                                    </td>
                                     <td>
                                         @record.AddDate.ToString("dd.MM.yyyy")
                                     </td>
