@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Roomager.DataAccess;
 using Roomager.DataAccess.DataAccessObjects;
 using Roomager.Services.PaymentsServices;
+using System.Globalization;
 
 namespace Roomager.Web
 {
@@ -32,6 +33,11 @@ namespace Roomager.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var cultureInfo = new CultureInfo("en-GB");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
