@@ -5,6 +5,7 @@ The application offers management of:
 * residents' payments
 * rooms for rent (under development)
 * documentation (under development)
+* user account (under development)
 
 ## Technologies used: 
 * ASP.NET Core 
