@@ -16,7 +16,7 @@ The application offers management of:
 
 ### Screens:
 
-![HomePage](https://user-images.githubusercontent.com/51293461/145276765-5100c52b-4e63-4ae8-aa20-be6720ecd6b5.png)
+![HomePage](https://user-images.githubusercontent.com/51293461/145277246-49ee5e31-97bc-4361-870f-797eb4a1e3cd.png)
 
 ![AddPayment](https://user-images.githubusercontent.com/51293461/145276729-549e4f25-1f21-4928-95ff-9a168fa45644.png)
 
